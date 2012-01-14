@@ -1,0 +1,31 @@
+PATH
+  remote: .
+  specs:
+    mixcloud (1.0.0)
+      json (~> 1.6.1)
+      rest-client (~> 1.6.7)
+      rspec (~> 2.7.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.1.3)
+    json (1.6.1)
+    mime-types (1.17.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mixcloud!
+  rspec

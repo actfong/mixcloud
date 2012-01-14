@@ -1,0 +1,21 @@
+artist.rb
+	- only assign metadata when called
+
+category.rb
+	- only assign metadata when called
+
+cloudcast.rb
+  - return association collection for Tags and Sections
+  - only assign association (User) when called
+
+tag.rb
+	- only assign metadata when called
+
+track.rb
+	- only assign metadata when called
+	- only assign association (Artist) when called
+
+all above classes
+	- extract connections and its methods
+	- Track and Cloudcast initializer => not creating Artist or User, but give it a artist_url 
+	  instead
