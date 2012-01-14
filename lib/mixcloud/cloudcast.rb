@@ -8,7 +8,7 @@ module Mixcloud
                   :play_count,
                   :comment_count,
                   :percentage_music,
-                  :user, # associated object
+                  # :user, # associated object
                   :key,
                   :created_time,
                   :audio_length,
@@ -29,6 +29,9 @@ module Mixcloud
       end
     end
 
+    def user
+      @user ||= User.new(user_url)
+    end
     # instance methods to return a associated collection
     # def tags
     # end

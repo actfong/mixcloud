@@ -13,16 +13,14 @@ module Mixcloud
                   :updated_time,
                   :created_time,
                   :pictures,
-                  :metadata,
                   :type,
                   :city,
                   :biog,
                   :country
 
-    CONNECTIONS = ['feed', 'playlists', 'comments', 'followers', 'favorites', 'following', 'cloudcasts', 'listens']
-    CONNECTIONS.each do |connection|
-      define_method connection.gsub("-", "_") do
-        @metadata['connections']["#{connection}"]
+    ['feed', 'playlists', 'comments', 'followers', 'favorites', 'following', 'cloudcasts', 'listens'].each do |connection|
+      define_method "#{connection}_url" do
+        "http://api.mixcloud.com#{@key}#{connection}/"
       end
     end
 

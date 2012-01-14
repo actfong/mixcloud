@@ -15,10 +15,12 @@ require 'mixcloud/tag'
 require 'mixcloud/track'
 require 'mixcloud/user'
 require 'mixcloud/search'
-
+    
 # USER
+alex_url ='http://api.mixcloud.com/ctafong/?metadata=1'
+alex = JSON.parse RestClient.get alex_url
 # dave = Mixcloud::User.new('http://api.mixcloud.com/davidaustingrey/?metadata=1')
-# puts dave.inspect
+# puts alex.inspect
 # puts dave.medium_picture_url
 # puts dave.extra_large_picture_url
 
@@ -58,10 +60,10 @@ require 'mixcloud/search'
 # results = Mixcloud::Search.artist('aphex twin')
 # puts results.inspect
 # results.each do |result|
-	# puts result.name
-	# puts result.url
-	# puts result.key
-	# puts result.slug
+  # puts result.name
+  # puts result.url
+  # puts result.key
+  # puts result.slug
 # end
 
 # results = Mixcloud::Search.find_cloudcast('party time')
