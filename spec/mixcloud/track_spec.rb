@@ -26,14 +26,12 @@ describe "Mixcloud::Track" do
       track.instance_variables.should_not include(:@metadata)
     end
 
-    it "should not have an instance variable named @artist" do
-      track.instance_variables.should_not include(:@artist)
+    it "should have an instance variable named @artist_url" do
+      track.instance_variables.should include(:@artist_url)
     end
-  end
 
-  describe '#artist_url' do
-    it "should return the url for its associated artist" do
-      track.artist_url.should eq "http://api.mixcloud.com/artist/the-colonious/?metadata=1"
+    it "should have @artist_url set correctly" do
+      track.artist_url.should eq 'http://api.mixcloud.com/artist/the-colonious/?metadata=1'
     end
   end
 

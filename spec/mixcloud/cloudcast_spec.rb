@@ -75,6 +75,14 @@ describe "Mixcloud::Cloudcast" do
     it "should not have an instance variable named @tags" do
       cloudcast.instance_variables.should_not include(:@tags)
     end
+
+    it "should have @user_url as instance_variable" do
+      cloudcast.instance_variables.should include(:@user_url)
+    end
+
+    it "should have @user_url set corrently" do
+      cloudcast.user_url.should eq 'http://api.mixcloud.com/ctafong/?metadata=1'
+    end
   end
 
   describe "#listeners_url" do

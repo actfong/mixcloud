@@ -22,9 +22,10 @@ module Mixcloud
 
     def map_to_resource_attributes(data_hash)
       data_hash.each_pair do | key, value |
-        create_picture_url_methods(value) if key == 'pictures'
+        next if ['metadata', 'sections', 'tags', 'type'].include?(key)
+        create_picture_url_methods(value) and next if key == 'pictures'
         key,value = set_associated_object_urls(key, value) if Mixcloud.const_defined?(key.capitalize)
-        assign_values_to_attribues(key, value)
+        send("#{key}=", value) 
       end
     end
 
@@ -39,13 +40,6 @@ module Mixcloud
       object_url = value['url'].gsub('http://www.', 'http://api.') + "?metadata=1"
       [ variable_name, object_url ]
     end
-
-    def assign_values_to_attribues(key, value)
-      unless ['metadata', 'sections', 'pictures', 'tags', 'type'].include?(key)
-        send("#{key}=", value) 
-      end
-    end
-
     ############################################
   end
 end

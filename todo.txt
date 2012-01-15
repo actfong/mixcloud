@@ -6,3 +6,6 @@ Resource
 
 Search
   - Test
+
+Cloudcast 
+  - associations
