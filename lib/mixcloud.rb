@@ -1,13 +1,14 @@
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+# $:.unshift(File.dirname(__FILE__)) unless
+#   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 require 'rubygems'
 require 'rest_client'
 require 'json'
 require 'rspec'
 
-require 'mixcloud/resource'
 require 'mixcloud/popular_new_hot'
+require 'mixcloud/url_fixer'
+require 'mixcloud/resource'
 require 'mixcloud/artist'
 require 'mixcloud/category'
 require 'mixcloud/cloudcast'
@@ -17,15 +18,15 @@ require 'mixcloud/user'
 require 'mixcloud/search'
     
 # USER
-alex_url ='http://api.mixcloud.com/ctafong/?metadata=1'
-alex = JSON.parse RestClient.get alex_url
-# dave = Mixcloud::User.new('http://api.mixcloud.com/davidaustingrey/?metadata=1')
+# alex_url ='http://api.mixcloud.com/ctafong/?metadata=1'
+# alex = JSON.parse RestClient.get alex_url
+# dave = Mixcloud::User.new(alex_url)
 # puts alex.inspect
 # puts dave.medium_picture_url
 # puts dave.extra_large_picture_url
 
 # ARTIST
-# aphex_url = 'http://api.mixcloud.com/artist/aphex-twin/?metadata=1'
+# aphex_url = 'http://api.mixcloud.com/artist/aphex-twin/?metadata=1/'
 # aphex = Mixcloud::Artist.new(aphex_url)
 # aphex = JSON.parse RestClient.get aphex_url
 # puts aphex.inspect
@@ -48,7 +49,7 @@ alex = JSON.parse RestClient.get alex_url
 # TRACK
 # track = JSON.parse RestClient.get('http://api.mixcloud.com/track/the-colonious/alter-ego-tate/?metadata=1')
 # track = Mixcloud::Track.new('http://api.mixcloud.com/track/the-colonious/alter-ego-tate/?metadata=1')
-# puts track.artist.inspect
+# puts track.inspect
 
 # puts track.artist_url
 # puts track.artist

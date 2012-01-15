@@ -8,7 +8,6 @@ module Mixcloud
                   :play_count,
                   :comment_count,
                   :percentage_music,
-                  # :user, # associated object
                   :key,
                   :created_time,
                   :audio_length,
@@ -16,28 +15,23 @@ module Mixcloud
                   :slug,
                   :favorite_count
 
-
-    # This class contains the following instance methods
-    # listeners_url,
-    # similar_url,
-    # favorites_url,
-    # comments_url
+   # This class contains the following instance methods
+   # #medium_picture_url
+   # #extra_large_picture_url
+   # #large_picture_url
+   # #small_url
+   # #medium_mobile_picture_url
+   # #thumbnail_picture_url
+   # #listeners_url,
+   # #similar_url,
+   # #favorites_url,
+   # #comments_url
 
    ['listeners', 'similar', 'favorites', 'comments'].each do | connection |
       define_method "#{connection}_url" do
         @url.gsub('http://www', 'http://api') + "#{connection.gsub("_", "-")}/"
       end
     end
-
-    def user
-      @user ||= User.new(user_url)
-    end
-    # instance methods to return a associated collection
-    # def tags
-    # end
-    # 
-    # def sections
-    # end
 
   end
 end

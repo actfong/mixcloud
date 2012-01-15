@@ -1,7 +1,11 @@
 module Mixcloud
   class Search
 
-    # The codeblock below defines the following class methods, :find_artist, :find_cloudcast, :find_user, :find_tag
+    # The codeblock below defines the following class methods:
+    # Mixcloud::Search.find_artist 
+    # Mixcloud::Search.find_cloudcast
+    # Mixcloud::Search.find_user
+    # Mixcloud::Search.find_tag
     SEARCH_TYPES = ['artist', 'cloudcast', 'user', 'tag']
     SEARCH_TYPES.each do |type|
       define_singleton_method "find_#{type}" do | name |

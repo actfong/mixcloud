@@ -2,55 +2,57 @@ require 'mixcloud'
 
 describe "Mixcloud::Track" do
   
-  before(:all) do
-    @track = Mixcloud::Track.new('http://api.mixcloud.com/track/the-colonious/alter-ego-tate/?metadata=1')
+  before do
+    track_data = { "name"=>"Alter-Ego-Tate", 
+                   "artist"=>{ "url"=>"http://www.mixcloud.com/artist/the-colonious/", 
+                               "type"=>"artist", 
+                               "name"=>"The Colonious", 
+                               "key"=>"/artist/the-colonious/", 
+                               "slug"=>"the-colonious" },
+                   "url"=>"http://www.mixcloud.com/track/the-colonious/alter-ego-tate/", 
+                   "key"=>"/track/the-colonious/alter-ego-tate/", 
+                   "type"=>"track", "slug"=>"alter-ego-tate", 
+                   "metadata"=>{ "connections"=>{
+                                   "popular"=>"http://api.mixcloud.com/track/the-colonious/alter-ego-tate/popular/", 
+                                   "new"=>"http://api.mixcloud.com/track/the-colonious/alter-ego-tate/new/",
+                                   "hot"=>"http://api.mixcloud.com/track/the-colonious/alter-ego-tate/hot/"}}}
+    JSON.stub(:parse).and_return(track_data)
   end
 
-  it "should not have an instance variable named @metadata" do
-    @track.instance_variables.should_not include(:@metadata)
+  let(:track) { Mixcloud::Track.new('http://api.mixcloud.com/track/the-colonious/alter-ego-tate/?metadata=1') }
+
+  describe "instances" do
+    it "should not have an instance variable named @metadata" do
+      track.instance_variables.should_not include(:@metadata)
+    end
+
+    it "should not have an instance variable named @artist" do
+      track.instance_variables.should_not include(:@artist)
+    end
   end
 
-  it "should return the url for its associated artist" do
-    @track.artist_url.should eq "http://api.mixcloud.com/artist/the-colonious/"
+  describe '#artist_url' do
+    it "should return the url for its associated artist" do
+      track.artist_url.should eq "http://api.mixcloud.com/artist/the-colonious/?metadata=1"
+    end
   end
 
-  it "should return the url for the most popular cloudcasts with this track" do
-    @track.popular_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/popular/'
+  describe '#popular_url' do
+    it "should return the url for the most popular cloudcasts with this track" do
+      track.popular_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/popular/'
+    end
   end
 
-  it "should return the url for the latest cloudcasts with this track" do
-    @track.new_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/new/'
+  describe '#new_url' do
+    it "should return the url for the latest cloudcasts with this track" do
+      track.new_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/new/'
+    end
   end
-
-  it "should return the url for the 'hottest cloudcasts' with this track" do
-    @track.hot_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/hot/'
-  end
-
   
-  it "should return the url of associated artist" do
-    @track.artist_url.should eq "http://api.mixcloud.com/artist/the-colonious/"
-  end
-
-  describe "#artist" do
-
-    context "before #artist is called" do
-      it "should not have @artist defined before calling #artist" do
-        @track.instance_variables.should_not include(:@artist)
-      end
-    end
-
-    context "once #artist is called" do
-      it "should return the associated artist" do
-        @track.artist.name.should eq "The Colonious"
-      end
-      
-      it "should have @artist defined after calling #artist" do
-        @track.instance_variables.should include(:@artist)
-      end
-      
-      it "should return an object of Mixcloud::Artist class" do
-        @track.artist.class.should == Mixcloud::Artist
-      end
+  describe '#hot_url' do
+    it "should return the url for the 'hottest cloudcasts' with this track" do
+      track.hot_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/hot/'
     end
   end
+
 end

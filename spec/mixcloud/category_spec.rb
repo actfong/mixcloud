@@ -26,12 +26,14 @@ describe "Mixcloud::Category" do
                       
   let(:category) { Mixcloud::Category.new('http://api.mixcloud.com/categories/ambient/?=metadata=1') }
 
-  it "instances should not have an instance variable named @metadata" do
-    category.instance_variables.should_not include(:@metadata)
-  end
+  describe "instances" do
+    it "instances should not have an instance variable named @metadata" do
+      category.instance_variables.should_not include(:@metadata)
+    end
 
-  it "instances should not have an instance variable named @pictures" do
-    category.instance_variables.should_not include(:@pictures)
+    it "instances should not have an instance variable named @pictures" do
+      category.instance_variables.should_not include(:@pictures)
+    end
   end
   
   describe "#userpick_users_url" do

@@ -1,17 +1,9 @@
-artist.rb
-	- only assign metadata when called
+UrlFixer
+  - test with different url's
 
-category.rb
-	- only assign metadata when called
+Resource
+  - refactor initializer
 
-cloudcast.rb
-  - return association collection for Tags and Sections
+Search
+  - Test
 
-tag.rb
-	- only assign metadata when called
-
-track.rb
-	- only assign metadata when called
-
-all above classes
-	- extract connections and its methods

@@ -17,20 +17,29 @@ describe "Mixcloud::Tag" do
   end
 
   let(:tag) { Mixcloud::Tag.new('http://api.mixcloud.com/tag/funk/?metadata=1') }
-
-  it "should not have an instance variable named @metadata" do
-    tag.instance_variables.should_not include(:@metadata)
+  
+  describe "instances" do
+    it "should not have an instance variable named @metadata" do
+      tag.instance_variables.should_not include(:@metadata)
+    end
   end
 
-  it "should return the url for most popular cloudcasts containing this tag" do
-    tag.popular_url.should eq "http://api.mixcloud.com/tag/funk/popular/"
+  describe "#popular_url" do
+    it "should return the url for most popular cloudcasts containing this tag" do
+      tag.popular_url.should eq "http://api.mixcloud.com/tag/funk/popular/"
+    end
   end
 
-  it "should return the url for latest cloudcasts containing this tag" do
-    tag.new_url.should eq "http://api.mixcloud.com/tag/funk/new/"
+  describe '#new_url' do
+    it "should return the url for latest cloudcasts containing this tag" do
+      tag.new_url.should eq "http://api.mixcloud.com/tag/funk/new/"
+    end
   end
 
-  it "should return the url for 'hottest' cloudcasts containing this tag" do
-    tag.hot_url.should eq "http://api.mixcloud.com/tag/funk/hot/"
+  describe '#hot_url' do
+    it "should return the url for 'hottest' cloudcasts containing this tag" do
+      tag.hot_url.should eq "http://api.mixcloud.com/tag/funk/hot/"
+    end
   end
+
 end

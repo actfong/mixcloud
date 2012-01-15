@@ -7,9 +7,5 @@ module Mixcloud
                   :slug,
                   :type,
                   :artist
-
-    def artist
-      @artist ||= Artist.new(artist_url)
-    end
   end
 end

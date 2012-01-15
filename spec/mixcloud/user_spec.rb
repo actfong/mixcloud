@@ -36,14 +36,16 @@ describe "Mixcloud::User" do
 
   let(:user) { Mixcloud::User.new("http://www.mixcloud.com/ctafong/")}
 
-  it "should not have an instance variable named @metadata" do
-    user.instance_variables.should_not include(:@metadata)
+  describe "instances" do
+    it "should not have an instance variable named @metadata" do
+      user.instance_variables.should_not include(:@metadata)
+    end
+
+    it "should not have an instance variable named @pictures" do
+      user.instance_variables.should_not include(:@pictures)
+    end
   end
 
-  it "should not have an instance variable named @pictures" do
-    user.instance_variables.should_not include(:@pictures)
-  end
-  # 'feed', 'playlists', 'comments', 'followers', 'favorites', 'following', 'cloudcasts', 'listens'
   describe "#feed_url" do
     it "should return the URL for the user's activities" do
       user.feed_url.should eq 'http://api.mixcloud.com/ctafong/feed/'
@@ -86,11 +88,45 @@ describe "Mixcloud::User" do
     end
   end
 
-  describe "#listsns_url" do
+  describe "#listens_url" do
     it "should return the URL of cloudcasts the user has listened to" do
       user.listens_url.should eq "http://api.mixcloud.com/ctafong/listens/"
     end
   end
+
+  describe '#medium_picture_url' do
+    it "should return the URL for its small picture" do
+      user.medium_picture_url.should eq 'http://tb2.mixcloud.com/w/150/h/150/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
+
+  describe '#extra_large_picture_url' do
+    it "should return the URL for its extra large picture" do
+      user.extra_large_picture_url.should eq 'http://tb2.mixcloud.com/w/600/h/600/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
   
+  describe '#large_picture_url' do
+    it "should return the URL for its large picture" do
+      user.large_picture_url.should eq 'http://tb2.mixcloud.com/w/300/h/300/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
+  describe '#medium_mobile_picture_url' do
+    it "should return the URL for its medium mobile picture" do
+      user.medium_mobile_picture_url.should eq 'http://tb2.mixcloud.com/w/80/h/80/q/75/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
+
+  describe '#small_picture_url' do
+    it "should return the URL for its small picture" do
+      user.small_picture_url.should eq 'http://tb2.mixcloud.com/w/25/h/25/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
+  
+  describe '#thumbnail_picture_url' do
+    it "should return the URL for its thumbnail picture" do
+      user.thumbnail_picture_url.should eq 'http://tb2.mixcloud.com/w/50/h/50/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
+    end
+  end
 
 end

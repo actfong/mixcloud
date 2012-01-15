@@ -12,27 +12,21 @@ describe 'Mixcloud::Artist' do
                   
   let(:aphex) { Mixcloud::Artist.new('http://api.mixcloud.com/artist/aphex-twin/?metadata=1') }
 
-  it "should find the the url of its most popular cloudcasts" do
-    aphex.popular_url.should eql('http://api.mixcloud.com/artist/aphex-twin/popular/')
+  describe "#popular_url" do
+    it "should find the the url of its most popular cloudcasts" do
+      aphex.popular_url.should eql('http://api.mixcloud.com/artist/aphex-twin/popular/')
+    end
   end
 
-  it "should find the url of its hottest cloudcasts" do
-    aphex.hot_url.should eql('http://api.mixcloud.com/artist/aphex-twin/hot/')
+  describe '#hot_url' do
+    it "should find the url of its hottest cloudcasts" do
+      aphex.hot_url.should eql('http://api.mixcloud.com/artist/aphex-twin/hot/')
+    end
   end
 
-  it "should find the url of its latest cloudcasts" do
-    aphex.new_url.should eql('http://api.mixcloud.com/artist/aphex-twin/new/')
-  end
-
-  it "should respond to slug" do
-    aphex.slug.should == "aphex-twin"
-  end
-
-  it "should respond to key" do
-    aphex.key.should == '/artist/aphex-twin/'
-  end
-
-  it "should find Artist by slug" do
-    Mixcloud::Artist.find_by_slug('aphex-twin').url.should eq "http://www.mixcloud.com/artist/aphex-twin/"
+  describe '#new_url' do
+    it "should find the url of its latest cloudcasts" do
+      aphex.new_url.should eql('http://api.mixcloud.com/artist/aphex-twin/new/')
+    end
   end
 end
