@@ -4,7 +4,6 @@ module Mixcloud
                   :format,
                   :url,
                   :key,
-                  :type,
                   :slug
 
     # This class contains the following instance methods:

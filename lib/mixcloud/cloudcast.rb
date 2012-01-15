@@ -11,7 +11,6 @@ module Mixcloud
                   :key,
                   :created_time,
                   :audio_length,
-                  :type,
                   :slug,
                   :favorite_count
 

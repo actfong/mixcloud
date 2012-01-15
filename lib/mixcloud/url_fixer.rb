@@ -1,5 +1,7 @@
 module Mixcloud
   module UrlFixer
+
+    private
     def concat_with_metadata(url)
       return url if ends_with_metadata?(url)
       return url.chop if ends_with_metadata_slash?(url)

@@ -12,7 +12,6 @@ module Mixcloud
                   :updated_time,
                   :created_time,
                   :pictures,
-                  :type,
                   :city,
                   :biog,
                   :country

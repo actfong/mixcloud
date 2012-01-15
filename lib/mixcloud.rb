@@ -20,8 +20,8 @@ require 'mixcloud/search'
 # USER
 # alex_url ='http://api.mixcloud.com/ctafong/?metadata=1'
 # alex = JSON.parse RestClient.get alex_url
-# dave = Mixcloud::User.new(alex_url)
-# puts alex.inspect
+# alex = Mixcloud::User.new(alex_url)
+# puts alex.methods
 # puts dave.medium_picture_url
 # puts dave.extra_large_picture_url
 
@@ -39,7 +39,7 @@ require 'mixcloud/search'
 # Cloudcast
 # party_time = Mixcloud::Cloudcast.new('http://api.mixcloud.com/spartacus/party-time/?metadata=1')
 # party_time = JSON.parse(RestClient.get 'http://api.mixcloud.com/ctafong/cloudcast-api-test/?metadata=1')
-# puts party_time
+# puts party_time.methods
 
 # TAG
 # tag = JSON.parse(RestClient.get 'http://api.mixcloud.com/tag/funk/?metadata=1')

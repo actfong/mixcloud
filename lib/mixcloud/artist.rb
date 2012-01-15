@@ -4,7 +4,6 @@ module Mixcloud
     attr_accessor :name, 
                   :url,
                   :key,
-                  :type,
                   :slug
   end
 end
