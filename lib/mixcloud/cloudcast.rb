@@ -12,7 +12,8 @@ module Mixcloud
                   :created_time,
                   :audio_length,
                   :slug,
-                  :favorite_count
+                  :favorite_count,
+                  :user_url
 
    # This class contains the following instance methods
    # #medium_picture_url

@@ -8,24 +8,6 @@ module Mixcloud
       klass =  Mixcloud.const_get(data_hash['type'].capitalize)
       prevent_url_and_class_mismatch(klass)
       map_to_resource_attributes(data_hash)
-
-      # resource.each_pair do |key, value|
-      #   create_picture_urls(value) if key == 'pictures'
-      # 
-      #   if Mixcloud.const_defined?(key.capitalize)
-      #     key = key + "_url"
-      #     value = value['url'].gsub('http://www.', 'http://api.') + "?metadata=1"
-      #     self.class.send(:define_method, key ) do
-      #       value
-      #     end
-      #     next
-      #   end
-      # 
-      #   unless ['metadata', 'sections', 'pictures', 'tags'].include?(key)
-      #     send("#{key}=", value) 
-      #   end
-      # end
-
     end
 
 
@@ -41,10 +23,7 @@ module Mixcloud
     def map_to_resource_attributes(data_hash)
       data_hash.each_pair do | key, value |
         create_picture_url_methods(value) if key == 'pictures'
-        if Mixcloud.const_defined?(key.capitalize)
-          create_associated_object_url_methods(key, value)
-          next
-        end
+        key,value = set_associated_object_urls(key, value) if Mixcloud.const_defined?(key.capitalize)
         assign_values_to_attribues(key, value)
       end
     end
@@ -55,10 +34,10 @@ module Mixcloud
       end
     end
 
-    def create_associated_object_url_methods(key, value)
-      method_name = key + "_url"
+    def set_associated_object_urls(key, value)
+      variable_name = key + "_url"
       object_url = value['url'].gsub('http://www.', 'http://api.') + "?metadata=1"
-      self.class.send(:define_method, method_name ) { object_url}
+      [ variable_name, object_url ]
     end
 
     def assign_values_to_attribues(key, value)
