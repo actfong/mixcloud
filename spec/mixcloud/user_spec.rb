@@ -34,7 +34,7 @@ describe "Mixcloud::User" do
     JSON.stub(:parse).and_return(user_data)
   end
 
-  let(:user) { Mixcloud::User.new("http://www.mixcloud.com/ctafong/")}
+  let(:user) { Mixcloud::User.new("http://api.mixcloud.com/ctafong/")}
 
   describe "instances" do
     it "should not have an instance variable named @metadata" do

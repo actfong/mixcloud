@@ -38,12 +38,12 @@ module Mixcloud
 
     def set_public_and_api_urls(url_string)
       send("public_url=", url_string)
-      send("api_url=", url_string.gsub("http://www", "http://api").concat('?metadata=1') )
+      send("api_url=", turn_www_to_api(url_string)).concat('?metadata=1')
     end
 
     def set_associated_object_urls(key, value)
       variable_name = key + "_url"
-      object_url = value['url'].gsub('http://www.', 'http://api.') + "?metadata=1"
+      object_url = turn_www_to_api(value['url']).concat('?metadata=1')
       [ variable_name, object_url ]
     end
     ############################################
