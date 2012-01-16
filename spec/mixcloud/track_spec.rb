@@ -34,7 +34,7 @@ describe "Mixcloud::Track" do
       track.artist_url.should eq 'http://api.mixcloud.com/artist/the-colonious/?metadata=1'
     end
 
-    it "should have an instance variable named @artist_url" do
+    it "should have an instance variable named @public_url" do
       track.instance_variables.should include(:@public_url)
     end
 
@@ -52,19 +52,19 @@ describe "Mixcloud::Track" do
   end
 
   describe '#popular_url' do
-    it "should return the url for the most popular cloudcasts with this track" do
+    it "should return the url of the most popular cloudcasts featuring this track" do
       track.popular_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/popular/'
     end
   end
 
   describe '#new_url' do
-    it "should return the url for the latest cloudcasts with this track" do
+    it "should return the url of the latest cloudcasts featuring this track" do
       track.new_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/new/'
     end
   end
   
   describe '#hot_url' do
-    it "should return the url for the 'hottest cloudcasts' with this track" do
+    it "should return the url of the 'hottest cloudcasts' featuring this track" do
       track.hot_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/hot/'
     end
   end

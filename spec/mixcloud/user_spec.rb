@@ -63,7 +63,7 @@ describe "Mixcloud::User" do
   end
 
   describe "#feed_url" do
-    it "should return the URL for the user's activities" do
+    it "should return the URL of the user's activities" do
       user.feed_url.should eq 'http://api.mixcloud.com/ctafong/feed/'
     end
   end

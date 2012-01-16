@@ -41,19 +41,19 @@ describe "Mixcloud::Tag" do
   end
 
   describe "#popular_url" do
-    it "should return the url for most popular cloudcasts containing this tag" do
+    it "should return the url of its most popular cloudcasts containing this tag" do
       tag.popular_url.should eq "http://api.mixcloud.com/tag/funk/popular/"
     end
   end
 
   describe '#new_url' do
-    it "should return the url for latest cloudcasts containing this tag" do
+    it "should return the url of its latest cloudcasts containing this tag" do
       tag.new_url.should eq "http://api.mixcloud.com/tag/funk/new/"
     end
   end
 
   describe '#hot_url' do
-    it "should return the url for 'hottest' cloudcasts containing this tag" do
+    it "should return the url of its 'hottest' cloudcasts containing this tag" do
       tag.hot_url.should eq "http://api.mixcloud.com/tag/funk/hot/"
     end
   end

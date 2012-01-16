@@ -1,8 +1,8 @@
 module Mixcloud
   class Resource
-    # include Mixcloud::UrlFixer
 
     def initialize(url)
+      UrlFixer.validate_mixcloud_url(url)
       url_with_metadata = UrlFixer.concat_with_metadata(url)
       data_hash = JSON.parse RestClient.get(url_with_metadata)
       klass =  Mixcloud.const_get(data_hash['type'].capitalize)

@@ -13,8 +13,10 @@ Gem::Specification.new do |s|
              "lib/mixcloud/popular_new_hot.rb",
              "lib/mixcloud/resource.rb",
              "lib/mixcloud/search.rb",
+             "lib/mixcloud/section.rb",
              "lib/mixcloud/tag.rb",
              "lib/mixcloud/track.rb",
+             "lib/mixcloud/url_fixer.rb"
              "lib/mixcloud/user.rb"
             ]
   s.homepage = "http://www.github.com/actfong/mixcloud"

@@ -2,9 +2,10 @@ module Mixcloud
   class UrlFixer
 
     class << self
+      ##################################
       public
-      def turn_www_to_api(url)
-        url.strip.sub('http://www.', 'http://api.' ) if url.strip =~ /\Ahttp:\/\/www./
+      def validate_mixcloud_url(url)
+        raise "You provided an invalid Mixcloud-API url. It must start with http://api.mixcloud.com/" unless url =~ /\Ahttp:\/\/api.mixcloud.com\//
       end
 
       def concat_with_metadata(url)
@@ -14,6 +15,10 @@ module Mixcloud
         url.concat('?metadata=1')
       end
 
+      def turn_www_to_api(url)
+        url.strip.sub('http://www.', 'http://api.' ) if url.strip =~ /\Ahttp:\/\/www./
+      end
+      ##################################
       private 
       def ends_with_metadata?(url)
         true if url =~ /\?metadata=1$/
@@ -26,6 +31,8 @@ module Mixcloud
       def ends_with_slash?(url)
         url =~ /\/\z/
       end
+      ##################################
     end
+
   end
 end

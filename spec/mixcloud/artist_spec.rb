@@ -13,19 +13,19 @@ describe 'Mixcloud::Artist' do
   let(:aphex) { Mixcloud::Artist.new('http://api.mixcloud.com/artist/aphex-twin/?metadata=1') }
 
   describe "#popular_url" do
-    it "should find the the url of its most popular cloudcasts" do
+    it "should find the the url of most popular cloudcasts featuring this artist" do
       aphex.popular_url.should eql('http://api.mixcloud.com/artist/aphex-twin/popular/')
     end
   end
 
   describe '#hot_url' do
-    it "should find the url of its hottest cloudcasts" do
+    it "should find the url of hottest cloudcasts featuring this artist" do
       aphex.hot_url.should eql('http://api.mixcloud.com/artist/aphex-twin/hot/')
     end
   end
 
   describe '#new_url' do
-    it "should find the url of its latest cloudcasts" do
+    it "should find the url of latest cloudcasts featuring this artist" do
       aphex.new_url.should eql('http://api.mixcloud.com/artist/aphex-twin/new/')
     end
   end
@@ -35,7 +35,7 @@ describe 'Mixcloud::Artist' do
       aphex.instance_variables.should include(:@public_url)
     end
 
-    it "should have @public_url set to the corrent value" do
+    it "should have @public_url set to the correct value" do
       aphex.public_url.should eq "http://www.mixcloud.com/artist/aphex-twin/"
     end
 
