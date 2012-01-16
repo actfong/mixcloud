@@ -1,5 +1,5 @@
 module Mixcloud
-  class UrlFixer
+  class UrlHelper
 
     class << self
       ##################################

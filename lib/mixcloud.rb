@@ -7,7 +7,7 @@ require 'json'
 require 'rspec'
 
 require 'mixcloud/popular_new_hot'
-require 'mixcloud/url_fixer'
+require 'mixcloud/url_helper'
 require 'mixcloud/resource'
 require 'mixcloud/artist'
 require 'mixcloud/category'

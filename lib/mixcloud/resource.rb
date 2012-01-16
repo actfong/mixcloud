@@ -2,8 +2,8 @@ module Mixcloud
   class Resource
 
     def initialize(url)
-      UrlFixer.validate_mixcloud_url(url)
-      url_with_metadata = UrlFixer.concat_with_metadata(url)
+      UrlHelper.validate_mixcloud_url(url)
+      url_with_metadata = UrlHelper.concat_with_metadata(url)
       data_hash = JSON.parse RestClient.get(url_with_metadata)
       klass =  Mixcloud.const_get(data_hash['type'].capitalize)
       prevent_url_and_class_mismatch(klass)
@@ -38,12 +38,12 @@ module Mixcloud
 
     def set_public_and_api_urls(url_string)
       send("public_url=", url_string)
-      send("api_url=", UrlFixer.turn_www_to_api(url_string)).concat('?metadata=1')
+      send("api_url=", UrlHelper.turn_www_to_api(url_string)).concat('?metadata=1')
     end
 
     def set_associated_object_urls(key, value)
       variable_name = key + "_url"
-      object_url = UrlFixer.turn_www_to_api(value['url']).concat('?metadata=1')
+      object_url = UrlHelper.turn_www_to_api(value['url']).concat('?metadata=1')
       [ variable_name, object_url ]
     end
     ############################################

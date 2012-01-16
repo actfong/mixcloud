@@ -20,7 +20,7 @@ module Mixcloud
 
     ['userpick_users', 'userpick_cloudcasts', 'users', 'cloudcasts' ].each do | connection |
       define_method "#{connection}_url" do
-        UrlFixer.turn_www_to_api(@public_url).concat "#{connection.gsub("_", "-")}/"
+        UrlHelper.turn_www_to_api(@public_url).concat "#{connection.gsub("_", "-")}/"
       end
     end
   end
