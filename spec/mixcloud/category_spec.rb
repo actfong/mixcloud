@@ -34,6 +34,22 @@ describe "Mixcloud::Category" do
     it "instances should not have an instance variable named @pictures" do
       category.instance_variables.should_not include(:@pictures)
     end
+
+    it "instances should have an instance variable named @public_url" do
+      category.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set to the correct value" do
+      category.public_url.should eq "http://www.mixcloud.com/categories/ambient/"
+    end
+
+    it "instances should have an instance variable named @api_url" do
+      category.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set to the correct value" do
+      category.api_url.should eq "http://api.mixcloud.com/categories/ambient/?metadata=1"
+    end
   end
   
   describe "#userpick_users_url" do

@@ -44,6 +44,22 @@ describe "Mixcloud::User" do
     it "should not have an instance variable named @pictures" do
       user.instance_variables.should_not include(:@pictures)
     end
+
+    it "should have an instance variable named @public_url" do
+      user.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set to the correct value" do
+      user.public_url.should eq 'http://www.mixcloud.com/ctafong/'
+    end
+
+    it "should have an instance variable named @api_url" do
+      user.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set to the correct value" do
+      user.api_url.should eq 'http://api.mixcloud.com/ctafong/?metadata=1'
+    end
   end
 
   describe "#feed_url" do
@@ -111,6 +127,7 @@ describe "Mixcloud::User" do
       user.large_picture_url.should eq 'http://tb2.mixcloud.com/w/300/h/300/q/85/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'
     end
   end
+
   describe '#medium_mobile_picture_url' do
     it "should return the URL for its medium mobile picture" do
       user.medium_mobile_picture_url.should eq 'http://tb2.mixcloud.com/w/80/h/80/q/75/upload/images/profile/f12cbfbd-49be-45b8-bde2-6d1f49e443e2.jpg'

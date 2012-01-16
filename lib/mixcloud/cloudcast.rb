@@ -2,7 +2,8 @@ module Mixcloud
   class Cloudcast < Mixcloud::Resource
     attr_accessor :listener_count,
                   :name,
-                  :url,
+                  :public_url,
+                  :api_url,
                   :description,
                   :updated_time,
                   :play_count,
@@ -29,8 +30,26 @@ module Mixcloud
 
    ['listeners', 'similar', 'favorites', 'comments'].each do | connection |
       define_method "#{connection}_url" do
-        @url.gsub('http://www', 'http://api') + "#{connection.gsub("_", "-")}/"
+        turn_www_to_api(@public_url) + "#{connection.gsub("_", "-")}/?metadata=1"
       end
+    end
+
+    def sections
+      sections_hash = JSON.parse(RestClient.get @api_url)['sections']
+      sections_array = []
+      sections_hash.each do | section |
+        sections_array << Mixcloud::Section.new(turn_www_to_api(section['track']['url']), section['position'], section['start_type'], section['section_type'] )
+      end
+      sections_array
+    end
+
+    def tag_urls
+      tags_hash = JSON.parse(RestClient.get @api_url)['tags']
+      tags_urls_array = []
+      tags_hash.each do | tag |
+        tags_urls_array << turn_www_to_api(tag['url']).concat('?metadata=1')
+      end
+      tags_urls_array
     end
 
   end

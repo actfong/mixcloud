@@ -12,6 +12,7 @@ require 'mixcloud/resource'
 require 'mixcloud/artist'
 require 'mixcloud/category'
 require 'mixcloud/cloudcast'
+require 'mixcloud/section'
 require 'mixcloud/tag'
 require 'mixcloud/track'
 require 'mixcloud/user'
@@ -37,9 +38,9 @@ require 'mixcloud/search'
 # ambient = Mixcloud::Category.new(ambient_url)
 
 # Cloudcast
-# party_time = Mixcloud::Cloudcast.new('http://api.mixcloud.com/spartacus/party-time/?metadata=1')
+# party_time = Mixcloud::Cloudcast.new('http://api.mixcloud.com/ctafong/cloudcast-api-test/?metadata=1')
 # party_time = JSON.parse(RestClient.get 'http://api.mixcloud.com/ctafong/cloudcast-api-test/?metadata=1')
-# puts party_time.inspect
+# puts party_time.tags[0].inspect
 
 # TAG
 # tag = JSON.parse(RestClient.get 'http://api.mixcloud.com/tag/funk/?metadata=1')

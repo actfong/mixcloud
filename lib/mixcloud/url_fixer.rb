@@ -1,6 +1,11 @@
 module Mixcloud
   module UrlFixer
 
+    public
+    def turn_www_to_api(url)
+      url.gsub('http://www.', 'http://api.' )
+	  end
+
     private
     def concat_with_metadata(url)
       return url if ends_with_metadata?(url)

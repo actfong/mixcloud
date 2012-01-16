@@ -2,7 +2,8 @@ module Mixcloud
   class Category < Mixcloud::Resource
     attr_accessor :name, 
                   :format,
-                  :url,
+                  :public_url,
+                  :api_url,
                   :key,
                   :slug
 
@@ -19,7 +20,7 @@ module Mixcloud
 
     ['userpick_users', 'userpick_cloudcasts', 'users', 'cloudcasts' ].each do | connection |
       define_method "#{connection}_url" do
-        @url.gsub('http://www', 'http://api') + "#{connection.gsub("_", "-")}/"
+        turn_www_to_api(@public_url).concat "#{connection.gsub("_", "-")}/"
       end
     end
   end

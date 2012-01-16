@@ -1,11 +1,5 @@
 UrlFixer
   - test with different url's
 
-Resource
-  - refactor initializer
-
 Search
-  - Test
-
-Cloudcast 
-  - associations
+  - test

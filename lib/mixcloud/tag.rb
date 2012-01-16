@@ -1,7 +1,8 @@
 module Mixcloud
   class Tag < Mixcloud::Resource
     include Mixcloud::PopularNewHot
-    attr_accessor :url, 
+    attr_accessor :public_url, 
+                  :api_url,
                   :name,
                   :key
     # This class contains the following instance methods

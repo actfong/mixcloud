@@ -29,4 +29,22 @@ describe 'Mixcloud::Artist' do
       aphex.new_url.should eql('http://api.mixcloud.com/artist/aphex-twin/new/')
     end
   end
+
+  describe "instances" do
+    it "should have @public_url defined" do
+      aphex.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set to the corrent value" do
+      aphex.public_url.should eq "http://www.mixcloud.com/artist/aphex-twin/"
+    end
+
+    it "should have @api_url defined" do
+      aphex.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set to the corrent value" do
+      aphex.api_url.should eq "http://api.mixcloud.com/artist/aphex-twin/?metadata=1"
+    end
+  end
 end

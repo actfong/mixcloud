@@ -1,15 +1,15 @@
 module Mixcloud
   module PopularNewHot
     def popular_url
-      @url.gsub('http://www', 'http://api')  + 'popular/'
+      turn_www_to_api(@public_url).concat 'popular/'
     end
 
     def new_url
-      @url.gsub('http://www', 'http://api')  + 'new/'
+      turn_www_to_api(@public_url).concat 'new/'
     end
 
     def hot_url
-      @url.gsub('http://www', 'http://api')  + 'hot/'
+      turn_www_to_api(@public_url).concat 'hot/'
     end
   end
 end

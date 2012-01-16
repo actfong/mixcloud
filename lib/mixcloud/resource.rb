@@ -24,6 +24,7 @@ module Mixcloud
       data_hash.each_pair do | key, value |
         next if ['metadata', 'sections', 'tags', 'type'].include?(key)
         create_picture_url_methods(value) and next if key == 'pictures'
+        set_public_and_api_urls(value) and next if key == 'url'
         key,value = set_associated_object_urls(key, value) if Mixcloud.const_defined?(key.capitalize)
         send("#{key}=", value) 
       end
@@ -33,6 +34,11 @@ module Mixcloud
       picture_hash.each_pair do |format, picture_url|
         self.class.send(:define_method, "#{format}_picture_url") { picture_url }
       end
+    end
+
+    def set_public_and_api_urls(url_string)
+      send("public_url=", url_string)
+      send("api_url=", url_string.gsub("http://www", "http://api").concat('?metadata=1') )
     end
 
     def set_associated_object_urls(key, value)

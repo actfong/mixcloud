@@ -22,6 +22,22 @@ describe "Mixcloud::Tag" do
     it "should not have an instance variable named @metadata" do
       tag.instance_variables.should_not include(:@metadata)
     end
+
+    it "should have an instance variable named @public_url" do
+      tag.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set to the correct_value" do
+      tag.public_url.should eq 'http://www.mixcloud.com/tag/funk/'
+    end
+
+    it "should have an instance variable named @api_url" do
+      tag.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set to the correct_value" do
+      tag.api_url.should eq 'http://api.mixcloud.com/tag/funk/?metadata=1'
+    end
   end
 
   describe "#popular_url" do

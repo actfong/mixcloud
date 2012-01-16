@@ -83,29 +83,45 @@ describe "Mixcloud::Cloudcast" do
     it "should have @user_url set corrently" do
       cloudcast.user_url.should eq 'http://api.mixcloud.com/ctafong/?metadata=1'
     end
+
+    it "should have @public_url as instance_variable" do
+      cloudcast.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set corrently" do
+      cloudcast.public_url.should eq 'http://www.mixcloud.com/ctafong/cloudcast-api-test/'
+    end
+
+    it "should have @api_url as instance_variable" do
+      cloudcast.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set corrently" do
+      cloudcast.api_url.should eq 'http://api.mixcloud.com/ctafong/cloudcast-api-test/?metadata=1'
+    end
   end
 
   describe "#listeners_url" do
     it "should return the url of its listeners" do
-      cloudcast.listeners_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/listeners/"
+      cloudcast.listeners_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/listeners/?metadata=1"
     end
   end
 
   describe "#similar_url" do
     it "should return the url of similar cloudcasts" do
-      cloudcast.similar_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/similar/"
+      cloudcast.similar_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/similar/?metadata=1"
     end
   end
 
   describe "#favorites_url" do
     it "should return the url of users who favorited this cloudcast" do
-      cloudcast.favorites_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/favorites/"
+      cloudcast.favorites_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/favorites/?metadata=1"
     end
   end
 
   describe '#comments_url' do
     it "should return the url of comments for this cloudcast" do
-      cloudcast.comments_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/comments/"
+      cloudcast.comments_url.should eq "http://api.mixcloud.com/ctafong/cloudcast-api-test/comments/?metadata=1"
     end
   end
 
@@ -132,6 +148,7 @@ describe "Mixcloud::Cloudcast" do
       cloudcast.large_picture_url.should eq 'http://tb1.mixcloud.com/w/300/h/300/q/85/upload/images/extaudio/4055039a-5422-41d9-bca1-151f7acc9671.gif'
     end
   end
+
   describe '#medium_mobile_picture_url' do
     it "should return the URL for its medium mobile picture" do
       cloudcast.medium_mobile_picture_url.should eq 'http://tb1.mixcloud.com/w/80/h/80/q/75/upload/images/extaudio/4055039a-5422-41d9-bca1-151f7acc9671.gif'
@@ -143,10 +160,38 @@ describe "Mixcloud::Cloudcast" do
       cloudcast.small_picture_url.should eq 'http://tb1.mixcloud.com/w/25/h/25/q/85/upload/images/extaudio/4055039a-5422-41d9-bca1-151f7acc9671.gif'
     end
   end
-  
+
   describe '#thumbnail_picture_url' do
     it "should return the URL for its thumbnail picture" do
       cloudcast.thumbnail_picture_url.should eq 'http://tb1.mixcloud.com/w/50/h/50/q/85/upload/images/extaudio/4055039a-5422-41d9-bca1-151f7acc9671.gif'
+    end
+  end
+
+  describe "#sections" do
+    it "should return an array" do
+      cloudcast.sections.class.should == Array
+    end
+
+    it "should contains 2 Section objects based on the test data" do
+      cloudcast.sections[0].class.should == Mixcloud::Section
+      cloudcast.sections[1].class.should == Mixcloud::Section
+    end
+
+    it "should return Section objects with corrent data" do
+      cloudcast.sections[0].track_url == 'http://api.mixcloud.com/track/makoto/magic-hour/?metadata=1'
+      cloudcast.sections[0].position == 1
+      cloudcast.sections[0].start_time == 0
+      cloudcast.sections[0].section_type == 'track'
+    end
+  end
+
+  describe "#tag" do
+    it "should return an array" do
+      cloudcast.tag_urls.class.should == Array
+    end
+    
+    it "should return Tag objects with correct data" do
+      cloudcast.tag_urls.should eq ["http://api.mixcloud.com/tag/electronic/?metadata=1", "http://api.mixcloud.com/tag/chillout/?metadata=1", "http://api.mixcloud.com/tag/beats/?metadata=1"]
     end
   end
   

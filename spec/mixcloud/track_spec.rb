@@ -33,6 +33,22 @@ describe "Mixcloud::Track" do
     it "should have @artist_url set correctly" do
       track.artist_url.should eq 'http://api.mixcloud.com/artist/the-colonious/?metadata=1'
     end
+
+    it "should have an instance variable named @artist_url" do
+      track.instance_variables.should include(:@public_url)
+    end
+
+    it "should have @public_url set correctly" do
+      track.public_url.should eq 'http://www.mixcloud.com/track/the-colonious/alter-ego-tate/'
+    end
+
+    it "should have an instance variable named @api_url" do
+      track.instance_variables.should include(:@api_url)
+    end
+
+    it "should have @api_url set correctly" do
+      track.api_url.should eq 'http://api.mixcloud.com/track/the-colonious/alter-ego-tate/?metadata=1'
+    end
   end
 
   describe '#popular_url' do

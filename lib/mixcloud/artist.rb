@@ -2,9 +2,10 @@ module Mixcloud
   class Artist < Resource
     include Mixcloud::PopularNewHot
     attr_accessor :name, 
-                  :url,
                   :key,
-                  :slug
+                  :slug,
+                  :public_url,
+                  :api_url
     # This class contains the following instance methods
     # #popular_url
     # #new_url
