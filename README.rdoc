@@ -19,7 +19,7 @@ And then require Mixcloud
     # Examples
 
     makoto = Mixcloud::User.new('http://api.mixcloud.com/makoto')
-    makoto.cloudcasts_url         # => 'http://api.mixcloud.com/ctafong/cloudcasts/'
+    makoto.cloudcasts_url         # => 'http://api.mixcloud.com/makoto/cloudcasts/'
 
     cinematic_mix = Mixcloud::Cloudcast.new('http://api.mixcloud.com/rico-casazza/cinematic-mix-vol-ii/')
     cinematic_mix.tags            # => ["http://api.mixcloud.com/tag/cinematic/?metadata=1",
@@ -51,16 +51,20 @@ In order to do that, you must provide its API url to the constructor.
 ==== What do you mean by API url?
 
 Let's say you want to make a ruby object of the user Mary Anne Hobbs, and her public profile is on
-http://www.mixcloud.com/MaryAnneHobbs/
+
+    http://www.mixcloud.com/MaryAnneHobbs/
 
 By API url, I mean replacing the 'www' in her URL with 'api', so you get
-http://api.mixcloud.com/MaryAnneHobbs/
+    http://api.mixcloud.com/MaryAnneHobbs/
 
 Then in your code:
 
     mary_anne_hobbs = Mixcloud::User.new('http://api.mixcloud.com/MaryAnneHobbs/')
 
-Another note regarding the API url, when you enter the API url in the browser, you will see a bunch of data in JSON. But when you append the API url with '?metadata=1' (thus 'http://api.mixcloud.com/MaryAnneHobbs/?metadata=1'), then you will see.... well, more useful data.
+Another note regarding the API url, when you enter the API url in the browser, you will see a bunch of data in JSON. But when you append the API url with '?metadata=1', thus
+    'http://api.mixcloud.com/MaryAnneHobbs/?metadata=1'
+
+, then you will see.... well, more useful data.
 
 What you need to know is that the Mixcloud gem automatically append '?=metadata' to the url that you provide to the constructor, so you don't have to do it yourself. But even when you do, you won't break anything.
 
@@ -77,17 +81,16 @@ to retrieve the API url of the associated user. It does not return a User object
 However, by providing you the API url, it does make it easier for you to build that object.
 
 There is one exception to that rule! A Cloudcast has many Sections, but if you look at the Mixcloud API,
-it does not treat Section as a resource and they don't have an unique URL. In this case, when you call:
+it does not treat Section as a resource and they don't have unique URLs. In this case, when you call:
 
     @cloudcast.sections
-
-It will return an array of Section objects.
 
 For more information regarding associations, check out the documentation below.
 
 == Resources
 
-Here is a list of classes and their methods
+Most of the methods are named after the JSON data retrieved from the Mixcloud API.
+Here is a list of classes and their methods.
 
 === Artist
 
@@ -136,8 +139,8 @@ Instance methods:
     @cloudcast.similar_url
     @cloudcast.favorites_url
     @cloudcast.comments_url
-    @cloudcast.sections    # returns an array of Section objects
-    @cloudcast.tag_urls    # returns an array of urls of tags associated with the cloudcast
+    @cloudcast.sections
+    @cloudcast.tag_urls
 
 Instance variables (defined at initialization):
     @listener_count, @name, @public_url, @api_url, @description, @updated_time, @play_count, @comment_count, 
@@ -145,7 +148,7 @@ Instance variables (defined at initialization):
 
 Association:
 A Cloudcast has many Sections:
-    @cloudcast.sections    # returns an array of Section objects
+    @cloudcast.sections    # returns an array of Section objects. See Section for its attributes
 A Cloudcast has many Tags:
     @cloudcast.tag_urls    # returns an array of api-urls of tags (as string) associated with the cloudcast
 A Cloudcast belongs to a User:
@@ -215,3 +218,16 @@ Class methods:
     Mixcloud::Seach.find_cloudcast(string)
     Mixcloud::Seach.find_user(string)
     Mixcloud::Seach.find_tag(string)
+
+
+=== Section
+
+Mixcloud::Section contains the following:
+
+When you call
+
+    @cloudcast.sections
+
+, it creates an array of Sections. Each section has the instance variables defined:
+
+    @track_url, @position, @start_time, @section_type
