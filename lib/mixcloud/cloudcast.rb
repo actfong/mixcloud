@@ -42,6 +42,7 @@ module Mixcloud
       convert_hash_data_into_array_of('tags')
     end
 
+    #######################################################################
     private
     def convert_hash_data_into_array_of(type)
       raise 'I only take sections of tags, dude' unless ['sections', 'tags'].include?(type)
@@ -56,5 +57,6 @@ module Mixcloud
       end
       objects_array
     end
+
   end
 end
