@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "mixcloud"
-  s.version = "0.0.1"
-  s.date = "2012-01-10"
+  s.version = "0.0.2"
+  s.date = "2012-01-17"
   s.summary = "Ruby wrapper of the Mixcloud API. It allows you to builld Mixcloud resources as Ruby objects and provides search functionality"
   s.description = "Ruby wrapper of the Mixcloud API. Visit http://www.mixcloud.com/developers/documentation/ for more info"
   s.authors = ["Alex Fong"]
