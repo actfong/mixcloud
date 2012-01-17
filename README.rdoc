@@ -231,3 +231,7 @@ When you call
 , it creates an array of Sections. Each section has the instance variables defined:
 
     @track_url, @position, @start_time, @section_type
+
+== License
+
+Copyright © 2012 Alex Fong. Release under MIT license. See the attached License file.
