@@ -23,9 +23,9 @@ module Mixcloud
    # #small_url
    # #medium_mobile_picture_url
    # #thumbnail_picture_url
-   # #listeners_url,
-   # #similar_url,
-   # #favorites_url,
+   # #listeners_url
+   # #similar_url
+   # #favorites_url
    # #comments_url
 
    ['listeners', 'similar', 'favorites', 'comments'].each do | connection |

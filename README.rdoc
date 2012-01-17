@@ -1,0 +1,221 @@
+== Mixcloud
+
+The Mixcloud gem is a ruby wrapper of the Mixcloud.com API.
+It enables you to create Ruby objects of Mixcloud resources such as Cloudcast, Artist, etc. by providing their API urls.
+
+Furthermore, it provides a Search functionality which returns Mixcloud resources as an array of Ruby objects instead of JSON data.
+For more info check 
+* www.mixcloud.com/developers/documentation/
+
+This gem has not been tested yet with a Rails app. So it is still pretty much a beta. But feel free to test it, use it, drop me a note if you think something needs to be changed or added, or if something isn't quite working.
+
+== Installation
+
+    sudo gem install mixcloud
+
+And then require Mixcloud 
+    require 'mixcloud'
+
+    # Examples
+
+    makoto = Mixcloud::User.new('http://api.mixcloud.com/makoto')
+    makoto.cloudcasts_url         # => 'http://api.mixcloud.com/ctafong/cloudcasts/'
+
+    cinematic_mix = Mixcloud::Cloudcast.new('http://api.mixcloud.com/rico-casazza/cinematic-mix-vol-ii/')
+    cinematic_mix.tags            # => ["http://api.mixcloud.com/tag/cinematic/?metadata=1",
+                                        "http://api.mixcloud.com/tag/dub-chill-out-downtempo/?metadata=1", 
+                                        "http://api.mixcloud.com/tag/soundscape/?metadata=1",
+                                        "http://api.mixcloud.com/tag/soundtrack/?metadata=1", 
+                                        "http://api.mixcloud.com/tag/trip-hop/?metadata=1"]
+== Usage
+
+=== Search functionality
+
+The Mixcloud gem provide a search functionality for the following Mixcloud resources: Artist, Cloudcast, User and Tag.
+
+Say if you are looking for an artist named 'Dorian Concept':
+
+    Mixcloud::Search.find_artist('dorian concept')
+
+It will return an array of Artist objects, all with the words 'dorian concept' in their names. Behind the scenes, Mixcloud::Search builds a query string for you, so you don't have to worry about whitespaces. Same goes for:
+
+    Mixcloud::Search.find_cloudcast('some text')
+    Mixcloud::Search.find_user('some text')
+    Mixcloud::Search.find_tag('some text')
+
+=== Create Mixcloud Resources
+
+You can create Ruby objects of the following Mixcloud resources: Artist, Category, Cloudcast, Tag, Track and User.
+In order to do that, you must provide its API url to the constructor.
+
+==== What do you mean by API url?
+
+Let's say you want to make a ruby object of the user Mary Anne Hobbs, and her public profile is on
+http://www.mixcloud.com/MaryAnneHobbs/
+
+By API url, I mean replacing the 'www' in her URL with 'api', so you get
+http://api.mixcloud.com/MaryAnneHobbs/
+
+Then in your code:
+
+    mary_anne_hobbs = Mixcloud::User.new('http://api.mixcloud.com/MaryAnneHobbs/')
+
+Another note regarding the API url, when you enter the API url in the browser, you will see a bunch of data in JSON. But when you append the API url with '?metadata=1' (thus 'http://api.mixcloud.com/MaryAnneHobbs/?metadata=1'), then you will see.... well, more useful data.
+
+What you need to know is that the Mixcloud gem automatically append '?=metadata' to the url that you provide to the constructor, so you don't have to do it yourself. But even when you do, you won't break anything.
+
+=== Associations
+
+Certain Mixcloud objects have associations, for example, a Cloudcast belongs to a User.
+In most applications, you can call #user_id to retrieve that user.
+However, if you look at the Mixcloud API, the identifier is actually an URL. 
+So in this gem, you will call
+
+    @cloudcast.user_url
+
+to retrieve the API url of the associated user. It does not return a User object, because I believe that it is a responsibility that belongs to your web-app.
+However, by providing you the API url, it does make it easier for you to build that object.
+
+There is one exception to that rule! A Cloudcast has many Sections, but if you look at the Mixcloud API,
+it does not treat Section as a resource and they don't have an unique URL. In this case, when you call:
+
+    @cloudcast.sections
+
+It will return an array of Section objects.
+
+For more information regarding associations, check out the documentation below.
+
+== Resources
+
+Here is a list of classes and their methods
+
+=== Artist
+
+Mixcloud::Artist contains the following:
+
+Instance methods:
+
+# To return the API url with the most popular, latest, or the hottest cloudcasts for a specific artist
+    @artist.popular_url
+    @artist.new_url
+    @artist.hot_url
+
+Instance variables (defined at initialization):
+    @name, @key, @slug, @public_url, @api_url
+
+=== Category
+
+Mixcloud::Category contains the following:
+
+Instance methods:
+    @category.small_picture_url
+    @category.large_picture_url
+    @category.medium_picture_url
+    @category.thumbnail_picture_url
+    @category.medium_mobile_picture_url
+    @category.userpick_users_url 
+    @category.userpick_cloudcasts_url
+    @category.users_url
+    @category.cloudcasts_url
+
+Instance variables (defined at initialization):
+    @name, @format, @public_url, @api_url, @key, @slug
+
+=== Cloudcast
+
+Mixcloud::Cloudcast contains the following:
+
+Instance methods:
+    @cloudcast.medium_picture_url
+    @cloudcast.extra_large_picture_url
+    @cloudcast.large_picture_url
+    @cloudcast.small_url
+    @cloudcast.medium_mobile_picture_url
+    @cloudcast.thumbnail_picture_url
+    @cloudcast.listeners_ur,
+    @cloudcast.similar_url
+    @cloudcast.favorites_url
+    @cloudcast.comments_url
+    @cloudcast.sections    # returns an array of Section objects
+    @cloudcast.tag_urls    # returns an array of urls of tags associated with the cloudcast
+
+Instance variables (defined at initialization):
+    @listener_count, @name, @public_url, @api_url, @description, @updated_time, @play_count, @comment_count, 
+    @percentage_music, @key, @created_time, @audio_length, @slug, @favorite_count, @user_url
+
+Association:
+A Cloudcast has many Sections:
+    @cloudcast.sections    # returns an array of Section objects
+A Cloudcast has many Tags:
+    @cloudcast.tag_urls    # returns an array of api-urls of tags (as string) associated with the cloudcast
+A Cloudcast belongs to a User:
+    @cloudcast.user_url    # returns the api url of the associated user
+
+=== Tag
+
+Mixcloud::Tag contains the following:
+
+Instance methods:
+
+# To return the API url with the most popular, latest, or the hottest cloudcasts with a specific tag
+    @tag.popular_url
+    @tag.new_url
+    @tag.hot_url
+
+Instance variables (defined at initialization):
+    @public_url, @api_url, @name, @key
+
+=== Track
+
+Mixcloud::Track contains the following:
+
+Instance methods:
+# To return the API url with the most popular, latest, or the hottest cloudcasts featuring a specific track
+    @track.popular_url
+    @track.new_url
+    @track.hot_url
+
+Instance variables (defined at initialization):
+    @public_url, @api_url, @name, @key, @slug, @artist_url
+
+Associations:
+A Track belongs to an Artist:
+    @track.artist_url     # returns the api url of the associated artist
+
+=== User
+
+Mixcloud::User contains the following:
+
+Instance methods:
+    @user.medium_picture_url
+    @user.extra_large_picture_url
+    @user.large_picture_url
+    @user.small_url
+    @user.medium_mobile_picture_url
+    @user.thumbnail_picture_url
+    @user.feed_url
+    @user.playlists_url
+    @user.comments_url
+    @user.followers_url
+    @user.favorites_url
+    @user.following_url
+    @user.cloudcasts_url
+    @user.listens_url
+
+Instance variables (defined at initialization):
+    @username, @name, @cloudcast_count, @following_count, @public_url, @api_url, @listen_count, @key,
+    @follower_count, @favorite_count, @updated_time, @created_time, @city, @biog, @country
+
+=== Search
+
+Mixcloud::Search contains the following:
+
+Class methods:
+    Mixcloud::Seach.find_artist(string)
+    Mixcloud::Seach.find_cloudcast(string)
+    Mixcloud::Seach.find_user(string)
+    Mixcloud::Seach.find_tag(string)
+
+== Further notes:
+
+This gem has not been tested yet within a Rails application. So feel free to test it, and drop me a note if something isn't quite working or if you feel certain feature should be added or modified.
