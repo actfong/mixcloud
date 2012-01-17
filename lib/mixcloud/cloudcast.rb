@@ -35,22 +35,26 @@ module Mixcloud
     end
 
     def sections
-      sections_hash = JSON.parse(RestClient.get @api_url)['sections']
-      sections_array = []
-      sections_hash.each do | section |
-        sections_array << Mixcloud::Section.new(UrlHelper.turn_www_to_api(section['track']['url']), section['position'], section['start_type'], section['section_type'] )
-      end
-      sections_array
+      convert_hash_data_into_array_of('sections')
     end
 
     def tag_urls
-      tags_hash = JSON.parse(RestClient.get @api_url)['tags']
-      tags_urls_array = []
-      tags_hash.each do | tag |
-        tags_urls_array << UrlHelper.turn_www_to_api(tag['url']).concat('?metadata=1')
-      end
-      tags_urls_array
+      convert_hash_data_into_array_of('tags')
     end
 
+    private
+    def convert_hash_data_into_array_of(type)
+      raise 'I only take sections of tags, dude' unless ['sections', 'tags'].include?(type)
+      elements_hash = JSON.parse(RestClient.get @api_url)[type]
+      objects_array = []
+      elements_hash.each do | element |
+        if type == 'sections'
+          objects_array << Mixcloud::Section.new(UrlHelper.turn_www_to_api(element['track']['url']), element['position'], element['start_type'], element['section_type'] )
+        elsif type == 'tags'
+          objects_array << UrlHelper.turn_www_to_api(element['url']).concat('?metadata=1')
+        end
+      end
+      objects_array
+    end
   end
 end
