@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'rest_client'
 require 'json'
-require 'rspec'
 
 require 'mixcloud/popular_new_hot'
 require 'mixcloud/url_helper'

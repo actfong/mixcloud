@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
              "lib/mixcloud/user.rb"
             ]
   s.homepage = "http://www.github.com/actfong/mixcloud"
-  s.add_dependency('rest-client', '~> 1.6.7')
-  s.add_dependency('json', '~> 1.6.1')
-  s.add_dependency('rspec', '~> 2.7.0')
+  s.add_dependency('rest-client', [">= 1.6.7"])
+  s.add_dependency('json', [">= 1.6.1"])
+  s.add_development_dependency('rspec', [">= 2.7.0"])
 end

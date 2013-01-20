@@ -1,4 +1,4 @@
-require 'mixcloud'
+require 'spec_helper'
 
 describe "Mixcloud::Cloudcast" do
 
