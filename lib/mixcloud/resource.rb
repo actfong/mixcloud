@@ -1,9 +1,10 @@
 module Mixcloud
   class Resource
 
+    include UrlHelper
     def initialize(url)
-      UrlHelper.validate_mixcloud_url(url)
-      url_with_metadata = UrlHelper.concat_with_metadata(url)
+      validate_mixcloud_url(url)
+      url_with_metadata = concat_with_metadata(url)
       data_hash = JSON.parse RestClient.get(url_with_metadata)
       klass =  Mixcloud.const_get(data_hash['type'].capitalize)
       prevent_url_and_class_mismatch(klass)
@@ -38,14 +39,15 @@ module Mixcloud
 
     def set_public_and_api_urls(url_string)
       send("public_url=", url_string)
-      send("api_url=", UrlHelper.turn_www_to_api(url_string)).concat('?metadata=1')
+      send("api_url=", turn_www_to_api(url_string)).concat('?metadata=1')
     end
 
     def set_associated_object_urls(key, value)
       variable_name = key + "_url"
-      object_url = UrlHelper.turn_www_to_api(value['url']).concat('?metadata=1')
+      object_url = turn_www_to_api(value['url']).concat('?metadata=1')
       [ variable_name, object_url ]
     end
+
     ############################################
   end
 end

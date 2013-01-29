@@ -1,0 +1,21 @@
+{
+    "name": "Everybody",
+    "artist": {
+        "url": "http://www.mixcloud.com/artist/michael-jackson/",
+        "type": "artist",
+        "name": "Michael Jackson",
+        "key": "/artist/michael-jackson/",
+        "slug": "michael-jackson"
+    },
+    "url": "http://www.mixcloud.com/track/michael-jackson/everybody/",
+    "key": "/track/michael-jackson/everybody/",
+    "type": "track",
+    "slug": "everybody",
+    "metadata": {
+        "connections": {
+            "popular": "http://api.mixcloud.com/track/michael-jackson/everybody/popular/",
+            "new": "http://api.mixcloud.com/track/michael-jackson/everybody/new/",
+            "hot": "http://api.mixcloud.com/track/michael-jackson/everybody/hot/"
+        }
+    }
+}

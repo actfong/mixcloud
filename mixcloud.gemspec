@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "mixcloud"
-  s.version = "0.0.3"
-  s.date = "2012-01-17"
+  s.version = "0.0.4"
+  s.date = "2013-01-29"
   s.summary = "Ruby wrapper of the Mixcloud API. It allows you to builld Mixcloud resources as Ruby objects and provides search functionality"
   s.description = "Ruby wrapper of the Mixcloud API. Visit http://www.mixcloud.com/developers/documentation/ for more info"
   s.authors = ["Alex Fong"]
@@ -23,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency('rest-client', [">= 1.6.7"])
   s.add_dependency('json', [">= 1.6.1"])
   s.add_development_dependency('rspec', [">= 2.7.0"])
+  s.add_development_dependency('fakeweb', [">= 1.3.0"])
 end

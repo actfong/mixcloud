@@ -1,0 +1,37 @@
+{
+    "username": "spartacus",
+    "city": "London",
+    "cloudcast_count": 3,
+    "following_count": 60,
+    "url": "http://www.mixcloud.com/spartacus/",
+    "pictures": {
+        "medium": "http://images-mix.netdna-ssl.com/w/100/h/100/q/85/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg",
+        "extra_large": "http://images-mix.netdna-ssl.com/w/600/h/600/q/85/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg",
+        "large": "http://images-mix.netdna-ssl.com/w/300/h/300/q/85/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg",
+        "medium_mobile": "http://images-mix.netdna-ssl.com/w/80/h/80/q/75/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg",
+        "small": "http://images-mix.netdna-ssl.com/w/25/h/25/q/85/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg",
+        "thumbnail": "http://images-mix.netdna-ssl.com/w/50/h/50/q/85/upload/images/profile/428814af-9313-4e8e-94c9-fe77db0397ec.jpg"
+    },
+    "listen_count": 865,
+    "updated_time": "2013-01-15T16:26:34Z",
+    "created_time": "2009-09-07T19:09:52Z",
+    "biog": "Part of the Mixcloud team - since Mixcloud was just a good idea.",
+    "key": "/spartacus/",
+    "country": "United Kingdom",
+    "follower_count": 343,
+    "metadata": {
+        "connections": {
+            "feed": "http://api.mixcloud.com/spartacus/feed/",
+            "playlists": "http://api.mixcloud.com/spartacus/playlists/",
+            "comments": "http://api.mixcloud.com/spartacus/comments/",
+            "followers": "http://api.mixcloud.com/spartacus/followers/",
+            "favorites": "http://api.mixcloud.com/spartacus/favorites/",
+            "following": "http://api.mixcloud.com/spartacus/following/",
+            "cloudcasts": "http://api.mixcloud.com/spartacus/cloudcasts/",
+            "listens": "http://api.mixcloud.com/spartacus/listens/"
+        }
+    },
+    "type": "user",
+    "favorite_count": 36,
+    "name": "Spartacus"
+}

@@ -30,7 +30,7 @@ module Mixcloud
 
    ['listeners', 'similar', 'favorites', 'comments'].each do | connection |
       define_method "#{connection}_url" do
-        UrlHelper.turn_www_to_api(@public_url) + "#{connection.gsub("_", "-")}/?metadata=1"
+        turn_www_to_api(@public_url) + "#{connection.gsub("_", "-")}/?metadata=1"
       end
     end
 
@@ -38,8 +38,12 @@ module Mixcloud
       convert_hash_data_into_array_of('sections')
     end
 
-    def tag_urls
+    def tags
       convert_hash_data_into_array_of('tags')
+    end
+    
+    def tag_urls
+      tags.map(&:api_url)
     end
 
     #######################################################################
@@ -50,9 +54,10 @@ module Mixcloud
       objects_array = []
       elements_hash.each do | element |
         if type == 'sections'
-          objects_array << Mixcloud::Section.new(UrlHelper.turn_www_to_api(element['track']['url']), element['position'], element['start_type'], element['section_type'] )
+          objects_array << Mixcloud::Section.new(turn_www_to_api(element['track']['url'] + "?metadata=1"), 
+                                                 element['position'], element['start_time'], element['section_type'])
         elsif type == 'tags'
-          objects_array << UrlHelper.turn_www_to_api(element['url']).concat('?metadata=1')
+          objects_array << Mixcloud::Tag.new(turn_www_to_api(element['url']).concat('?metadata=1'))
         end
       end
       objects_array

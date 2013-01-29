@@ -1,15 +1,19 @@
 module Mixcloud
   module PopularNewHot
+    def self.included(base)
+      base.class_eval{include UrlHelper} unless base.include?(UrlHelper)
+    end
+    
     def popular_url
-      UrlHelper.turn_www_to_api(@public_url).concat 'popular/'
+      turn_www_to_api(@public_url).concat 'popular/'
     end
 
     def new_url
-      UrlHelper.turn_www_to_api(@public_url).concat 'new/'
+      turn_www_to_api(@public_url).concat 'new/'
     end
 
     def hot_url
-      UrlHelper.turn_www_to_api(@public_url).concat 'hot/'
+      turn_www_to_api(@public_url).concat 'hot/'
     end
   end
 end

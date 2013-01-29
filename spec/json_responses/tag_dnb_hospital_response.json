@@ -1,0 +1,13 @@
+{
+    "url": "http://www.mixcloud.com/tag/dnb-hospital-drum-and-bass-liquid-funk/",
+    "type": "tag",
+    "name": "Dnb hospital drum and bass liquid funk",
+    "key": "/tag/dnb-hospital-drum-and-bass-liquid-funk/",
+    "metadata": {
+        "connections": {
+            "popular": "http://api.mixcloud.com/tag/dnb-hospital-drum-and-bass-liquid-funk/popular/",
+            "new": "http://api.mixcloud.com/tag/dnb-hospital-drum-and-bass-liquid-funk/new/",
+            "hot": "http://api.mixcloud.com/tag/dnb-hospital-drum-and-bass-liquid-funk/hot/"
+        }
+    }
+}

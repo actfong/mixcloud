@@ -2,60 +2,21 @@ require 'spec_helper'
 
 describe "Mixcloud::Tag" do
   before do
-    tag_data = {"url"=>"http://www.mixcloud.com/tag/funk/", 
-                "type"=>"tag", 
-                "name"=>"Funk",
-                "key"=>"/tag/funk/",
-                "metadata"=> {
-                  "connections"=> {"popular"=>"http://api.mixcloud.com/tag/funk/popular/", 
-                                   "new"=>"http://api.mixcloud.com/tag/funk/new/",
-                                   "hot"=>"http://api.mixcloud.com/tag/funk/hot/"
-                                  }
-                             }
-               }
-    JSON.stub(:parse).and_return(tag_data)
+    fakeweb_mixcloud_url('tag','funk', 'spec/json_responses/tag_funk_response.json')
   end
 
   let(:tag) { Mixcloud::Tag.new('http://api.mixcloud.com/tag/funk/?metadata=1') }
-  
-  describe "instances" do
-    it "should not have an instance variable named @metadata" do
-      tag.instance_variables.should_not include(:@metadata)
-    end
+  subject { tag }
 
-    it "should have an instance variable named @public_url" do
-      tag.instance_variables.should include(:@public_url)
-    end
+  its(:instance_variables) { should_not include(:@metadata) }
+  its(:instance_variables) { should_not include(:@type) }
 
-    it "should have @public_url set to the correct_value" do
-      tag.public_url.should eq 'http://www.mixcloud.com/tag/funk/'
-    end
+  # public_url and api_url are set by #set_public_and_api_urls in Resource class
+  its(:public_url) { should eq 'http://www.mixcloud.com/tag/funk/' }
+  its(:api_url) { should eq 'http://api.mixcloud.com/tag/funk/?metadata=1' }
 
-    it "should have an instance variable named @api_url" do
-      tag.instance_variables.should include(:@api_url)
-    end
-
-    it "should have @api_url set to the correct_value" do
-      tag.api_url.should eq 'http://api.mixcloud.com/tag/funk/?metadata=1'
-    end
-  end
-
-  describe "#popular_url" do
-    it "should return the url of its most popular cloudcasts containing this tag" do
-      tag.popular_url.should eq "http://api.mixcloud.com/tag/funk/popular/"
-    end
-  end
-
-  describe '#new_url' do
-    it "should return the url of its latest cloudcasts containing this tag" do
-      tag.new_url.should eq "http://api.mixcloud.com/tag/funk/new/"
-    end
-  end
-
-  describe '#hot_url' do
-    it "should return the url of its 'hottest' cloudcasts containing this tag" do
-      tag.hot_url.should eq "http://api.mixcloud.com/tag/funk/hot/"
-    end
-  end
-
+  # instance methods provided by the PopularNewHot module
+  its(:popular_url) { should eq "http://api.mixcloud.com/tag/funk/popular/" }
+  its(:new_url) { should eq "http://api.mixcloud.com/tag/funk/new/" }
+  its(:hot_url) { should eq "http://api.mixcloud.com/tag/funk/hot/" }
 end

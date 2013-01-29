@@ -1,0 +1,13 @@
+{
+    "url": "http://www.mixcloud.com/tag/funky-house/",
+    "type": "tag",
+    "name": "Funky house",
+    "key": "/tag/funky-house/",
+    "metadata": {
+        "connections": {
+            "popular": "http://api.mixcloud.com/tag/funky-house/popular/",
+            "new": "http://api.mixcloud.com/tag/funky-house/new/",
+            "hot": "http://api.mixcloud.com/tag/funky-house/hot/"
+        }
+    }
+}

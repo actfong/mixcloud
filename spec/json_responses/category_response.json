@@ -1,0 +1,23 @@
+{
+    "name": "Ambient",
+    "format": "music",
+    "url": "http://www.mixcloud.com/categories/ambient/",
+    "pictures": {
+        "small": "http://images-mix.netdna-ssl.com/w/25/h/25/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg",
+        "large": "http://images-mix.netdna-ssl.com/w/300/h/300/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg",
+        "medium": "http://images-mix.netdna-ssl.com/w/100/h/100/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg",
+        "thumbnail": "http://images-mix.netdna-ssl.com/w/50/h/50/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg",
+        "medium_mobile": "http://images-mix.netdna-ssl.com/w/80/h/80/q/75/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg"
+    },
+    "key": "/categories/ambient/",
+    "type": "category",
+    "slug": "ambient",
+    "metadata": {
+        "connections": {
+            "userpick-users": "http://api.mixcloud.com/categories/ambient/userpick-users/",
+            "userpick-cloudcasts": "http://api.mixcloud.com/categories/ambient/userpick-cloudcasts/",
+            "cloudcasts": "http://api.mixcloud.com/categories/ambient/cloudcasts/",
+            "users": "http://api.mixcloud.com/categories/ambient/users/"
+        }
+    }
+}

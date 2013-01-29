@@ -2,49 +2,27 @@ require 'spec_helper'
 
 describe 'Mixcloud::Artist' do
   before do
-    artist_data = {"name"=>"Aphex Twin",
-                   "url"=>"http://www.mixcloud.com/artist/aphex-twin/",
-                   "key"=>"/artist/aphex-twin/",
-                   "type"=>"artist",
-                   "slug"=>"aphex-twin"}
-    JSON.stub(:parse).and_return (artist_data)
-  end
-                  
-  let(:aphex) { Mixcloud::Artist.new('http://api.mixcloud.com/artist/aphex-twin/?metadata=1') }
-
-  describe "#popular_url" do
-    it "should find the the url of most popular cloudcasts featuring this artist" do
-      aphex.popular_url.should eql('http://api.mixcloud.com/artist/aphex-twin/popular/')
-    end
+    fakeweb_mixcloud_url('artist','aphex-twin', 'spec/json_responses/artist_response.json')
   end
 
-  describe '#hot_url' do
-    it "should find the url of hottest cloudcasts featuring this artist" do
-      aphex.hot_url.should eql('http://api.mixcloud.com/artist/aphex-twin/hot/')
-    end
-  end
+  let(:artist) { Mixcloud::Artist.new('http://api.mixcloud.com/artist/aphex-twin/?metadata=1') }
+  subject { artist }
 
-  describe '#new_url' do
-    it "should find the url of latest cloudcasts featuring this artist" do
-      aphex.new_url.should eql('http://api.mixcloud.com/artist/aphex-twin/new/')
-    end
-  end
+  # these data should have been filtered out by the resource class
+  its(:instance_variables) { should_not include(:@metadata) }
+  its(:instance_variables) { should_not include(:@type) }
 
-  describe "instances" do
-    it "should have @public_url defined" do
-      aphex.instance_variables.should include(:@public_url)
-    end
+  its(:name){ should eq 'Aphex Twin' }
+  its(:key){ should eq '/artist/aphex-twin/' }
+  its(:slug){ should eq 'aphex-twin' }
 
-    it "should have @public_url set to the correct value" do
-      aphex.public_url.should eq "http://www.mixcloud.com/artist/aphex-twin/"
-    end
+  # public_url and api_url are set by #set_public_and_api_urls in Resource class
+  its(:public_url){ should eq "http://www.mixcloud.com/artist/aphex-twin/" }
+  its(:api_url){ should eq "http://api.mixcloud.com/artist/aphex-twin/?metadata=1" }
 
-    it "should have @api_url defined" do
-      aphex.instance_variables.should include(:@api_url)
-    end
+  # instance methods provided by the PopularNewHot module
+  its(:popular_url){ should eq 'http://api.mixcloud.com/artist/aphex-twin/popular/' }
+  its(:new_url){ should eq 'http://api.mixcloud.com/artist/aphex-twin/new/' }
+  its(:hot_url){ should eq 'http://api.mixcloud.com/artist/aphex-twin/hot/' }
 
-    it "should have @api_url set to the corrent value" do
-      aphex.api_url.should eq "http://api.mixcloud.com/artist/aphex-twin/?metadata=1"
-    end
-  end
 end

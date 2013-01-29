@@ -1,5 +1,6 @@
 module Mixcloud
   class Search
+    extend UrlHelper
 
     # The codeblock below defines the following class methods:
     # Mixcloud::Search.find_artist 
@@ -25,7 +26,7 @@ module Mixcloud
     def self.turn_data_into_mixcloud_resources(results, klass)
       search_results = []
       results.each do |result|
-        resource_api_url = UrlHelper.turn_www_to_api result['url']
+        resource_api_url = turn_www_to_api result['url']
         resource = klass.new(resource_api_url)
         search_results << resource
       end

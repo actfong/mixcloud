@@ -1,0 +1,13 @@
+{
+    "url": "http://www.mixcloud.com/tag/funk/",
+    "type": "tag",
+    "name": "Funk",
+    "key": "/tag/funk/",
+    "metadata": {
+        "connections": {
+            "popular": "http://api.mixcloud.com/tag/funk/popular/",
+            "new": "http://api.mixcloud.com/tag/funk/new/",
+            "hot": "http://api.mixcloud.com/tag/funk/hot/"
+        }
+    }
+}

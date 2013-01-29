@@ -1,0 +1,13 @@
+{
+    "url": "http://www.mixcloud.com/tag/liquid-funk/",
+    "type": "tag",
+    "name": "Liquid funk",
+    "key": "/tag/liquid-funk/",
+    "metadata": {
+        "connections": {
+            "popular": "http://api.mixcloud.com/tag/liquid-funk/popular/",
+            "new": "http://api.mixcloud.com/tag/liquid-funk/new/",
+            "hot": "http://api.mixcloud.com/tag/liquid-funk/hot/"
+        }
+    }
+}
