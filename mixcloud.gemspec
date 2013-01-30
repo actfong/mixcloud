@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "mixcloud"
-  s.version = "0.0.4"
-  s.date = "2013-01-29"
+  s.version = "1.0.0"
+  s.date = "2013-01-30"
   s.summary = "Ruby wrapper of the Mixcloud API. It allows you to builld Mixcloud resources as Ruby objects and provides search functionality"
   s.description = "Ruby wrapper of the Mixcloud API. Visit http://www.mixcloud.com/developers/documentation/ for more info"
   s.authors = ["Alex Fong"]
@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
              "lib/mixcloud/artist.rb",
              "lib/mixcloud/category.rb",
              "lib/mixcloud/cloudcast.rb",
+             "lib/mixcloud/error.rb",
              "lib/mixcloud/popular_new_hot.rb",
              "lib/mixcloud/resource.rb",
              "lib/mixcloud/search.rb",

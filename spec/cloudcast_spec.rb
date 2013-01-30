@@ -91,4 +91,10 @@ describe "Mixcloud::Cloudcast" do
     end
   end
   
+  describe "#convert_hash_data_into_array_of" do
+    # In general private methods don't need to be tested, but I still want to see whether it will raise an error when needed
+    it "should raise an error when invoked with the wrong argument type" do
+      expect{cloudcast.send(:convert_hash_data_into_array_of, ('foobar'))}.to raise_error(Mixcloud::Error)
+    end
+  end
 end

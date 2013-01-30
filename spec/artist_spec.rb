@@ -25,4 +25,11 @@ describe 'Mixcloud::Artist' do
   its(:new_url){ should eq 'http://api.mixcloud.com/artist/aphex-twin/new/' }
   its(:hot_url){ should eq 'http://api.mixcloud.com/artist/aphex-twin/hot/' }
 
+  context "Initiated with a URL of another resource type"
+  it "should raise a Mixcloud::Error" do
+    FakeWeb.register_uri(:get, "http://api.mixcloud.com/spartacus/?metadata=1", 
+                         :body => 'spec/json_responses/user_response.json', 
+                         :content_type => "application/json")
+    expect { Mixcloud::Artist.new('http://api.mixcloud.com/spartacus/?metadata=1') }.to raise_error(Mixcloud::Error)
+  end
 end

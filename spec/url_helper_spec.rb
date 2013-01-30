@@ -11,7 +11,7 @@ describe "Mixcloud::UrlHelper" do
   describe ".validate_mixcloud_url" do
     it "should raise an exception when a user provides an invalid URL to construct an object" do
       # #validate_mixcloud_url is called once a subclass of Resource is instantiated
-      expect { Mixcloud::User.new('http://www.google.com') }.to raise_error ('You provided an invalid Mixcloud-API url. It must start with http://api.mixcloud.com/')
+      expect { Mixcloud::User.new('http://www.google.com') }.to raise_error (Mixcloud::Error)
     end
     
     it "should not do anything if the url is valid" do

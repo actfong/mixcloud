@@ -5,8 +5,8 @@ module Mixcloud
     def initialize(url)
       validate_mixcloud_url(url)
       url_with_metadata = concat_with_metadata(url)
-      data_hash = JSON.parse RestClient.get(url_with_metadata)
-      klass =  Mixcloud.const_get(data_hash['type'].capitalize)
+      data_hash = grab_data_from_mixcloud(url_with_metadata)
+      klass = determine_class_by_mixcloud_data(data_hash)
       prevent_url_and_class_mismatch(klass)
       map_to_resource_attributes(data_hash)
     end
@@ -15,9 +15,26 @@ module Mixcloud
     ###########################################
     private
 
+    def grab_data_from_mixcloud(url_with_metadata)
+      begin
+        JSON.parse RestClient.get(url_with_metadata)
+      rescue => e
+        e.message.concat(". Are you sure you have connection with Mixcloud at the moment?")
+        raise e
+      end
+    end
+
+    def determine_class_by_mixcloud_data(data_hash)
+      begin
+        Mixcloud.const_get(data_hash['type'].capitalize) # it would take a change of Mixcloud API to get this line to fail
+      rescue => e
+        e.message.concat(". We can't find the key 'type'. Could it be that Mixcloud has changed its API?")
+      end
+    end
+
     def prevent_url_and_class_mismatch(klass)
       if klass != self.class
-        raise "You tried to create an object of #{self.class} with an URL of object type #{klass}"
+        raise Mixcloud::Error.new("You tried to create an object of #{self.class} with an URL of object type #{klass}")
       end
     end
 

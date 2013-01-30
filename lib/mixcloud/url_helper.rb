@@ -4,7 +4,7 @@ module Mixcloud
   ##################################
     public
     def validate_mixcloud_url(url)
-      raise "You provided an invalid Mixcloud-API url. It must start with http://api.mixcloud.com/" unless url =~ /\Ahttp:\/\/api.mixcloud.com\//
+      raise Mixcloud::Error.new("You provided an invalid Mixcloud-API url. It must start with http://api.mixcloud.com/") unless url =~ /\Ahttp:\/\/api.mixcloud.com\//
     end
 
     def concat_with_metadata(url)

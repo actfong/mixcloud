@@ -49,7 +49,7 @@ module Mixcloud
     #######################################################################
     private
     def convert_hash_data_into_array_of(type)
-      raise 'I only take sections of tags, dude' unless ['sections', 'tags'].include?(type)
+      raise Mixcloud::Error.new("type should be 'sections' or 'tags', but you provided '#{type}'") unless ['sections', 'tags'].include?(type)
       elements_hash = JSON.parse(RestClient.get @api_url)[type]
       objects_array = []
       elements_hash.each do | element |
