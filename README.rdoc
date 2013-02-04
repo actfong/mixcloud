@@ -135,7 +135,7 @@ Instance methods:
     @cloudcast.small_url
     @cloudcast.medium_mobile_picture_url
     @cloudcast.thumbnail_picture_url
-    @cloudcast.listeners_ur,
+    @cloudcast.listeners_url
     @cloudcast.similar_url
     @cloudcast.favorites_url
     @cloudcast.comments_url
