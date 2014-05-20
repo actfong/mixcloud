@@ -15,7 +15,8 @@ module Mixcloud
                   :pictures,
                   :city,
                   :biog,
-                  :country
+                  :country,
+                  :cover_pictures
 
     # This class contains the following instance methods
     # #medium_picture_url
