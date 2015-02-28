@@ -43,7 +43,7 @@ module Mixcloud
     def tags
       convert_hash_data_into_array_of('tags')
     end
-    
+
     def tag_urls
       tags.map(&:api_url)
     end
@@ -56,7 +56,8 @@ module Mixcloud
       objects_array = []
       elements_hash.each do | element |
         if type == 'sections'
-          objects_array << Mixcloud::Section.new(turn_www_to_api(element['track']['url'] + "?metadata=1"), 
+          next if element.nil? || element['track'].nil?
+          objects_array << Mixcloud::Section.new(turn_www_to_api(element['track']['url'] + "?metadata=1"),
                                                  element['position'], element['start_time'], element['section_type'])
         elsif type == 'tags'
           objects_array << Mixcloud::Tag.new(turn_www_to_api(element['url']).concat('?metadata=1'))
