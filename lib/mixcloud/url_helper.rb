@@ -15,10 +15,10 @@ module Mixcloud
     end
 
     def turn_www_to_api(url)
-      url.strip.sub('http://www.', 'http://api.' ) if url.strip =~ /\Ahttp:\/\/www./
+      url.strip.sub(/\Ahttps?:\/\/www./, 'http://api.' ) if url.strip =~ /\Ahttps?:\/\/www./
     end
   ##################################
-    private 
+    private
     def ends_with_metadata?(url)
       true if url =~ /\?metadata=1$/
     end

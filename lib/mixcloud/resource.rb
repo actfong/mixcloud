@@ -44,7 +44,7 @@ module Mixcloud
         create_picture_url_methods(value) and next if key == 'pictures'
         set_public_and_api_urls(value) and next if key == 'url'
         key,value = set_associated_object_urls(key, value) if Mixcloud.const_defined?(key.capitalize)
-        send("#{key}=", value) 
+        send("#{key}=", value)
       end
     end
 

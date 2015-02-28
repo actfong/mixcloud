@@ -1,6 +1,6 @@
 module Mixcloud
   class User < Mixcloud::Resource
-    attr_accessor :username, 
+    attr_accessor :username,
                   :name,
                   :cloudcast_count,
                   :following_count,
@@ -15,7 +15,11 @@ module Mixcloud
                   :pictures,
                   :city,
                   :biog,
-                  :country
+                  :country,
+                  :picture_primary_color,
+                  :cover_pictures,
+                  :is_premium,
+                  :is_pro
 
     # This class contains the following instance methods
     # #medium_picture_url
