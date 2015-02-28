@@ -14,7 +14,9 @@ module Mixcloud
                   :audio_length,
                   :slug,
                   :favorite_count,
-                  :user_url
+                  :user_url,
+                  :repost_count,
+                  :picture_primary_color
 
    # This class contains the following instance methods
    # #medium_picture_url
