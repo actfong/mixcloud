@@ -21,8 +21,9 @@ Gem::Specification.new do |s|
              "lib/mixcloud/user.rb"
             ]
   s.homepage = "http://www.github.com/actfong/mixcloud"
-  s.add_dependency('rest-client', [">= 1.6.7"])
-  s.add_dependency('json', [">= 1.6.1"])
-  s.add_development_dependency('rspec', [">= 2.7.0"])
+  s.add_dependency('rest-client', [">= 2.0.0"])
+  s.add_dependency('json', [">= 1.8.3"])
+  s.add_development_dependency('rspec', [">= 3.5.0"])
+  # ToDo: replace fakeweb with VCR
   s.add_development_dependency('fakeweb', [">= 1.3.0"])
 end
