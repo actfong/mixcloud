@@ -10,29 +10,29 @@ describe "Mixcloud::Category" do
   subject { category }
   
   # these data should have been filtered out by the resource class
-  its(:instance_variables) { should_not include(:@metadata) }
-  its(:instance_variables) { should_not include(:@pictures) }
-  its(:instance_variables) { should_not include(:@type) }
+  specify { expect(subject.instance_variables).not_to include(:@metadata) }
+  specify { expect(subject.instance_variables).not_to include(:@pictures) }
+  specify { expect(subject.instance_variables).not_to include(:@type) }
 
-  its(:name) { should eq "Ambient" }
-  its(:format) { should eq "music" }
-  its(:key) { should eq "/categories/ambient/" }
-  its(:slug) { should eq "ambient" }
+  specify { expect(subject.name).to eq "Ambient" }
+  specify { expect(subject.format).to eq "music" }
+  specify { expect(subject.key).to eq "/categories/ambient/" }
+  specify { expect(subject.slug).to eq "ambient" }
 
   # public_url and api_url are set by #set_public_and_api_urls in Resource class
-  its(:public_url) { should eq 'http://www.mixcloud.com/categories/ambient/' }
-  its(:api_url) { should eq 'http://api.mixcloud.com/categories/ambient/?metadata=1' }
+  specify { expect(subject.public_url).to eq 'http://www.mixcloud.com/categories/ambient/' }
+  specify { expect(subject.api_url).to eq 'http://api.mixcloud.com/categories/ambient/?metadata=1' }
 
   # defined by an array in Mixcloud::Category
-  its(:userpick_users_url) { should eq 'http://api.mixcloud.com/categories/ambient/userpick-users/' }
-  its(:userpick_cloudcasts_url) { should eq 'http://api.mixcloud.com/categories/ambient/userpick-cloudcasts/' }
-  its(:users_url) { should eq 'http://api.mixcloud.com/categories/ambient/users/' }
-  its(:cloudcasts_url) { should eq 'http://api.mixcloud.com/categories/ambient/cloudcasts/' }
+  specify{ expect(subject.userpick_users_url).to eq 'http://api.mixcloud.com/categories/ambient/userpick-users/' }
+  specify{ expect(subject.userpick_cloudcasts_url).to eq 'http://api.mixcloud.com/categories/ambient/userpick-cloudcasts/' }
+  specify{ expect(subject.users_url).to eq 'http://api.mixcloud.com/categories/ambient/users/' }
+  specify{ expect(subject.cloudcasts_url).to eq 'http://api.mixcloud.com/categories/ambient/cloudcasts/' }
 
   # set by create_picture_url_methods in Resource
-  its(:small_picture_url) { should eq 'http://images-mix.netdna-ssl.com/w/25/h/25/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
-  its(:large_picture_url) { should eq 'http://images-mix.netdna-ssl.com/w/300/h/300/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
-  its(:medium_picture_url) { should eq 'http://images-mix.netdna-ssl.com/w/100/h/100/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
-  its(:thumbnail_picture_url) { should eq 'http://images-mix.netdna-ssl.com/w/50/h/50/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
-  its(:medium_mobile_picture_url) { should eq 'http://images-mix.netdna-ssl.com/w/80/h/80/q/75/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
+  specify{ expect(subject.small_picture_url).to eq 'http://images-mix.netdna-ssl.com/w/25/h/25/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
+  specify{ expect(subject.large_picture_url).to eq 'http://images-mix.netdna-ssl.com/w/300/h/300/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
+  specify{ expect(subject.medium_picture_url).to eq 'http://images-mix.netdna-ssl.com/w/100/h/100/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
+  specify{ expect(subject.thumbnail_picture_url).to eq 'http://images-mix.netdna-ssl.com/w/50/h/50/q/85/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
+  specify{ expect(subject.medium_mobile_picture_url).to eq 'http://images-mix.netdna-ssl.com/w/80/h/80/q/75/upload/images/profile/123e1fa9-396c-48e1-8121-96162008e060.jpg' }
 end
