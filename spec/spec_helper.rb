@@ -2,11 +2,6 @@ require 'rspec'
 require 'mixcloud'
 require 'fakeweb'
 
-RSpec.configure do |config|
-  config.color_enabled = true
-  config.formatter = 'documentation'
-end
-
 def fakeweb_mixcloud_search_url(name, type, response)
   FakeWeb.register_uri(:get, "http://api.mixcloud.com/search/?q=#{name}&type=#{type}", 
                        :body => response, 
