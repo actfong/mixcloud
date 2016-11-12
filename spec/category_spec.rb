@@ -8,16 +8,16 @@ describe "Mixcloud::Category" do
 
   let(:category) { Mixcloud::Category.new('http://api.mixcloud.com/categories/ambient/?metadata=1') }
   subject { category }
-  
+
   # these data should have been filtered out by the resource class
   specify { expect(subject.instance_variables).not_to include(:@metadata) }
   specify { expect(subject.instance_variables).not_to include(:@pictures) }
   specify { expect(subject.instance_variables).not_to include(:@type) }
 
-  specify { expect(subject.name).to eq "Ambient" }
-  specify { expect(subject.format).to eq "music" }
-  specify { expect(subject.key).to eq "/categories/ambient/" }
-  specify { expect(subject.slug).to eq "ambient" }
+  specify { expect(subject.name).to eq 'Ambient' }
+  specify { expect(subject.format).to eq 'music' }
+  specify { expect(subject.key).to eq '/categories/ambient/' }
+  specify { expect(subject.slug).to eq 'ambient' }
 
   # public_url and api_url are set by #set_public_and_api_urls in Resource class
   specify { expect(subject.public_url).to eq 'http://www.mixcloud.com/categories/ambient/' }

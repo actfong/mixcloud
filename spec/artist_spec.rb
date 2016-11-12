@@ -17,8 +17,8 @@ describe 'Mixcloud::Artist' do
   specify { expect(subject.slug).to eq 'aphex-twin' }
 
   # # public_url and api_url are set by #set_public_and_api_urls in Resource class
-  specify { expect(subject.public_url).to eq "http://www.mixcloud.com/artist/aphex-twin/"  }
-  specify { expect(subject.api_url).to eq "http://api.mixcloud.com/artist/aphex-twin/?metadata=1"  }
+  specify { expect(subject.public_url).to eq 'http://www.mixcloud.com/artist/aphex-twin/'  }
+  specify { expect(subject.api_url).to eq 'http://api.mixcloud.com/artist/aphex-twin/?metadata=1'  }
 
   # # instance methods provided by the PopularNewHot module
   specify{ expect(subject.popular_url).to eq 'http://api.mixcloud.com/artist/aphex-twin/popular/' }
@@ -26,10 +26,12 @@ describe 'Mixcloud::Artist' do
   specify{ expect(subject.hot_url).to eq 'http://api.mixcloud.com/artist/aphex-twin/hot/' }
 
   # context "Initiated with a URL of another resource type"
-  it "should raise a Mixcloud::Error" do
-    FakeWeb.register_uri(:get, "http://api.mixcloud.com/spartacus/?metadata=1", 
-                         :body => 'spec/json_responses/user_response.json', 
-                         :content_type => "application/json")
-    expect { Mixcloud::Artist.new('http://api.mixcloud.com/spartacus/?metadata=1') }.to raise_error(Mixcloud::Error)
+  it 'raises a Mixcloud::Error' do
+    FakeWeb.register_uri(:get, 'http://api.mixcloud.com/spartacus/?metadata=1',
+                         :body => 'spec/json_responses/user_response.json',
+                         :content_type => 'application/json')
+    expect {
+      Mixcloud::Artist.new('http://api.mixcloud.com/spartacus/?metadata=1')
+    }.to raise_error(Mixcloud::Error)
   end
 end
