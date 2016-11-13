@@ -3,11 +3,10 @@ module Mixcloud
     extend UrlHelper
 
     # The codeblock below defines the following class methods:
-    # Mixcloud::Search.find_artist 
     # Mixcloud::Search.find_cloudcast
     # Mixcloud::Search.find_user
     # Mixcloud::Search.find_tag
-    SEARCH_TYPES = ['artist', 'cloudcast', 'user', 'tag']
+    SEARCH_TYPES = ['cloudcast', 'user', 'tag']
     SEARCH_TYPES.each do |type|
       define_singleton_method "find_#{type}" do | name |
         search_url = create_search_url(name, type)

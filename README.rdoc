@@ -92,20 +92,6 @@ For more information regarding associations, check out the documentation below.
 Most of the methods are named after the JSON data retrieved from the Mixcloud API.
 Here is a list of classes and their methods.
 
-=== Artist
-
-Mixcloud::Artist contains the following:
-
-Instance methods:
-
-# To return the API url with the most popular, latest, or the hottest cloudcasts for a specific artist
-    @artist.popular_url
-    @artist.new_url
-    @artist.hot_url
-
-Instance variables (defined at initialization):
-    @name, @key, @slug, @public_url, @api_url
-
 === Category
 
 Mixcloud::Category contains the following:
@@ -214,7 +200,6 @@ Instance variables (defined at initialization):
 Mixcloud::Search contains the following:
 
 Class methods:
-    Mixcloud::Seach.find_artist(string)
     Mixcloud::Seach.find_cloudcast(string)
     Mixcloud::Seach.find_user(string)
     Mixcloud::Seach.find_tag(string)

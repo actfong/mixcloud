@@ -3,21 +3,6 @@ require 'fakeweb'
 
 describe 'Mixcloud::Search' do
 
-  describe '.find_artist' do
-    before do
-      fakeweb_mixcloud_search_url('aphex+twin', 'artist', 'spec/json_responses/search_artists.json')
-      fakeweb_mixcloud_url('artist','aphex-twin', 'spec/json_responses/artist_response.json')
-      fakeweb_mixcloud_url('artist','the-aphex-twin', 'spec/json_responses/artist_response.json')
-    end
-
-    subject { Mixcloud::Search.find_artist(artist) }
-    let(:artist) { 'aphex twin' }
-    specify { expect(subject).to be_a Array }
-    specify { expect(subject.count).to eq 2 }
-    specify { expect(subject[0]).to be_a Mixcloud::Artist }
-
-  end
-
   describe '.find_cloudcast' do
     before do
       fakeweb_mixcloud_search_url('party+time', 'cloudcast', 'spec/json_responses/search_cloudcasts.json')

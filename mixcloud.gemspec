@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.authors = ["Alex Fong"]
   s.email = "actfong@gmail.com"
   s.files = ["lib/mixcloud.rb",
-             "lib/mixcloud/artist.rb",
              "lib/mixcloud/category.rb",
              "lib/mixcloud/cloudcast.rb",
              "lib/mixcloud/error.rb",
