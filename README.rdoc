@@ -1,4 +1,4 @@
-== Mixcloud [![Build Status](https://travis-ci.org/actfong/mixcloud.svg?branch=master)](https://travis-ci.org/actfong/mixcloud)
+== Mixcloud {<img src="https://travis-ci.org/actfong/mixcloud.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/actfong/mixcloud]
 
 The Mixcloud gem is a ruby wrapper of the Mixcloud.com API.
 It enables you to create Ruby objects of Mixcloud resources such as Cloudcast, Artist, etc. by providing their API urls.
