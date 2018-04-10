@@ -1,4 +1,4 @@
-== Mixcloud
+== Mixcloud {<img src="https://travis-ci.org/actfong/mixcloud.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/actfong/mixcloud]
 
 The Mixcloud gem is a ruby wrapper of the Mixcloud.com API.
 It enables you to create Ruby objects of Mixcloud resources such as Cloudcast, Artist, etc. by providing their API urls.
@@ -8,6 +8,10 @@ For more info check
 * www.mixcloud.com/developers/documentation/
 
 This gem has not yet been tested with a Rails app. So it is still pretty much a beta. But feel free to test it, use it, drop me a note if you think something needs to be changed or added, or if something isn't quite working.
+
+== Requirements
+
+Ruby >= 2.0 is supported, except for 2.4 which is currently broken due an issue with the `fakeweb` gem dependency. Once fakeweb is updated we can update to add support.
 
 == Installation
 
