@@ -17,7 +17,9 @@ module Mixcloud
                   :biog,
                   :country,
                   :cover_pictures,
-                  :picture_primary_color
+                  :picture_primary_color,
+                  :is_premium,
+                  :is_pro
 
     # This class contains the following instance methods
     # #medium_picture_url
