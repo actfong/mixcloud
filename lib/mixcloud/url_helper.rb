@@ -15,7 +15,7 @@ module Mixcloud
     end
 
     def turn_www_to_api(url)
-      url.strip.sub('http://www.', 'http://api.' ) if url.strip =~ /\Ahttp:\/\/www./
+      url.strip.sub('://www.', '://api.' )
     end
   ##################################
     private 
